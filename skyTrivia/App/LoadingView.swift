@@ -1,33 +1,42 @@
-//
-//  LoadingView.swift
-
 import Foundation
 import UIKit
 import SnapKit
 
 class LoadingView: UIView {
     
-    private (set) var bgImage: UIImageView = {
+    private(set) var bgImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .bgLogo
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
    
-    private (set) var loadView: UIView = {
+    private(set) var loadView: UIView = {
         let view = UIView()
         view.backgroundColor = .clear
-        view.layer.cornerRadius = 5
-        view.layer.borderWidth = 1
-        view.layer.borderColor = UIColor.red.cgColor
+        view.layer.shadowColor = UIColor.cRed.withAlphaComponent(0.8).cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowRadius = 25
+        view.layer.shadowOffset = CGSize(width: 0, height: 0)
         return view
     }()
-
+    
+    private(set) var loadLabel: GradientLabel = {
+        let label = GradientLabel()
+           label.text = "LOADING"
+           label.font = UIFont.customFont(font: .sup, style: .ercharge, size: 20)
+           label.textAlignment = .center
+           label.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
+        return label
+    }()
+    
+    private var segments: [UIView] = []
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupConstraints()
+
     }
     
     required init?(coder: NSCoder) {
@@ -35,9 +44,7 @@ class LoadingView: UIView {
     }
     
     private func setupUI() {
-
-        [bgImage, loadView] .forEach(addSubview(_:))
-
+        [bgImage, loadView, loadLabel].forEach(addSubview(_:))
     }
     
     private func setupConstraints() {
@@ -47,11 +54,15 @@ class LoadingView: UIView {
         
         loadView.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.height.equalTo(11)
-            make.width.equalTo(337)
+            make.height.equalTo(18)
+            make.width.equalTo(353)
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-150)
         }
         
-     
+        loadLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(loadView.snp.bottom).offset(16)
+        }
     }
+  
 }
