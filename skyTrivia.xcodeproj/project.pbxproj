@@ -33,6 +33,12 @@
 		1879A92A2C466F4500AB749C /* LoadingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1879A9292C466F4500AB749C /* LoadingVC.swift */; };
 		1879A92C2C466F4900AB749C /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1879A92B2C466F4900AB749C /* LoadingView.swift */; };
 		1879A92F2C466FDA00AB749C /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 1879A92E2C466FDA00AB749C /* SnapKit */; };
+		18C7024B2C47BBD300C7B214 /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7024A2C47BBD300C7B214 /* HomeCell.swift */; };
+		18C702502C47DD0300C7B214 /* InfoHomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C7024F2C47DD0300C7B214 /* InfoHomeVC.swift */; };
+		18C702522C47DD0700C7B214 /* InfoHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C702512C47DD0700C7B214 /* InfoHomeView.swift */; };
+		18C702552C47DD1900C7B214 /* InfoQuizVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C702542C47DD1900C7B214 /* InfoQuizVC.swift */; };
+		18C702572C47DD1D00C7B214 /* InfoQuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C702562C47DD1D00C7B214 /* InfoQuizView.swift */; };
+		18C702592C47EEDA00C7B214 /* GradientBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C702582C47EEDA00C7B214 /* GradientBorderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +69,12 @@
 		1879A9122C466D2000AB749C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1879A9292C466F4500AB749C /* LoadingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingVC.swift; path = skyTrivia/App/LoadingVC.swift; sourceTree = SOURCE_ROOT; };
 		1879A92B2C466F4900AB749C /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingView.swift; path = skyTrivia/App/LoadingView.swift; sourceTree = SOURCE_ROOT; };
+		18C7024A2C47BBD300C7B214 /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		18C7024F2C47DD0300C7B214 /* InfoHomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHomeVC.swift; sourceTree = "<group>"; };
+		18C702512C47DD0700C7B214 /* InfoHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHomeView.swift; sourceTree = "<group>"; };
+		18C702542C47DD1900C7B214 /* InfoQuizVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoQuizVC.swift; sourceTree = "<group>"; };
+		18C702562C47DD1D00C7B214 /* InfoQuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoQuizView.swift; sourceTree = "<group>"; };
+		18C702582C47EEDA00C7B214 /* GradientBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBorderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +171,8 @@
 			children = (
 				183FF8BD2C46917700456E75 /* HomeVC.swift */,
 				183FF8BF2C46917C00456E75 /* HomeView.swift */,
+				18C7024A2C47BBD300C7B214 /* HomeCell.swift */,
+				18C7024E2C47DCF200C7B214 /* InfoHome */,
 			);
 			name = Home;
 			sourceTree = "<group>";
@@ -227,8 +241,28 @@
 				183FF8D52C469BFB00456E75 /* MemoryApp.swift */,
 				183FF8DC2C46BCA300456E75 /* GradientLabel.swift */,
 				183FF8DF2C46C6A500456E75 /* CustomTextStyle.swift */,
+				18C702582C47EEDA00C7B214 /* GradientBorderView.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		18C7024E2C47DCF200C7B214 /* InfoHome */ = {
+			isa = PBXGroup;
+			children = (
+				18C7024F2C47DD0300C7B214 /* InfoHomeVC.swift */,
+				18C702512C47DD0700C7B214 /* InfoHomeView.swift */,
+				18C702532C47DD0A00C7B214 /* InfoQuiz */,
+			);
+			name = InfoHome;
+			sourceTree = "<group>";
+		};
+		18C702532C47DD0A00C7B214 /* InfoQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				18C702542C47DD1900C7B214 /* InfoQuizVC.swift */,
+				18C702562C47DD1D00C7B214 /* InfoQuizView.swift */,
+			);
+			name = InfoQuiz;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -314,6 +348,7 @@
 				183FF8D02C4691A800456E75 /* InfoView.swift in Sources */,
 				183FF8C82C46919400456E75 /* BonusView.swift in Sources */,
 				183FF8CC2C46919D00456E75 /* LeadersView.swift in Sources */,
+				18C702522C47DD0700C7B214 /* InfoHomeView.swift in Sources */,
 				183FF8D42C469BD200456E75 /* Font + Extension.swift in Sources */,
 				1879A9052C466D1E00AB749C /* AppDelegate.swift in Sources */,
 				183FF8BE2C46917700456E75 /* HomeVC.swift in Sources */,
@@ -323,13 +358,18 @@
 				183FF8C22C46918200456E75 /* ProfileVC.swift in Sources */,
 				1879A92C2C466F4900AB749C /* LoadingView.swift in Sources */,
 				183FF8C62C46918F00456E75 /* BonusVC.swift in Sources */,
+				18C702502C47DD0300C7B214 /* InfoHomeVC.swift in Sources */,
+				18C7024B2C47BBD300C7B214 /* HomeCell.swift in Sources */,
+				18C702572C47DD1D00C7B214 /* InfoQuizView.swift in Sources */,
 				183FF8CA2C46919900456E75 /* LeadersVC.swift in Sources */,
 				1879A9072C466D1E00AB749C /* SceneDelegate.swift in Sources */,
 				183FF8DD2C46BCA300456E75 /* GradientLabel.swift in Sources */,
 				183FF8E02C46C6A500456E75 /* CustomTextStyle.swift in Sources */,
 				183FF8C02C46917C00456E75 /* HomeView.swift in Sources */,
 				1879A92A2C466F4500AB749C /* LoadingVC.swift in Sources */,
+				18C702592C47EEDA00C7B214 /* GradientBorderView.swift in Sources */,
 				183FF8B62C468A7900456E75 /* Settings.swift in Sources */,
+				18C702552C47DD1900C7B214 /* InfoQuizVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

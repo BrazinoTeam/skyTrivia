@@ -39,7 +39,6 @@ class HomeView: UIView {
         return label
     }()
     
-    
     private (set) var titleLabel: GradientLabel = {
         let label = GradientLabel()
         label.text = "Welcome"
@@ -53,8 +52,9 @@ class HomeView: UIView {
     }()
     
     private(set) lazy var collectionView: UICollectionView = {
-        collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-        collectionView.backgroundColor = .green
+        let layout = createLayout()
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
         return collectionView
     }()
     
@@ -120,21 +120,30 @@ class HomeView: UIView {
             make.top.equalTo(collectionView.snp.bottom)
         }
     }
-    
-    func createLayout() -> UICollectionViewLayout {
-        let layout = UICollectionViewCompositionalLayout { sectionIndex, _ in
-            let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-            let item = NSCollectionLayoutItem(layoutSize: itemSize)
-            item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-            
-            let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
-            let section = NSCollectionLayoutSection(group: group)
-            section.orthogonalScrollingBehavior = .groupPagingCentered
-            return section
+    private func createLayout() -> UICollectionViewLayout {
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalHeight(1.0))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .groupPagingCentered
+        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
+            let center = offset.x + environment.container.contentSize.width / 2
+            items.forEach { item in
+                let distance = abs(center - item.center.x)
+                let normalizedDistance = min(distance / environment.container.contentSize.width, 1.0)
+                let scale = 1 - 0.25 * normalizedDistance
+                item.transform = CGAffineTransform(scaleX: scale, y: scale)
+                item.alpha = 1 - 0.5 * normalizedDistance
+            }
         }
-        return layout
+
+        return UICollectionViewCompositionalLayout(section: section)
     }
+
 }
 

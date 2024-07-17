@@ -41,7 +41,7 @@ enum CustomTextStyle {
                 string: text,
                 attributes: [
                     NSAttributedString.Key.strokeColor: UIColor.cOrange,
-                    NSAttributedString.Key.strokeWidth: -8.0,
+                    NSAttributedString.Key.strokeWidth: -15.0,
                     NSAttributedString.Key.foregroundColor: UIColor.white
                 ]
             )

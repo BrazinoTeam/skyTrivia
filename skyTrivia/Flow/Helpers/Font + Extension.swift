@@ -35,7 +35,7 @@ extension UIFont {
 }
 
 extension UILabel {
-    static func createLabel(withText text: String, font: UIFont, textColor: UIColor, paragraphSpacing: CGFloat, lineHeightMultiple: CGFloat, textAlignment: NSTextAlignment = .center) -> UILabel {
+    static func createLabel(withText text: String, font: UIFont, textColor: UIColor, paragraphSpacing: CGFloat, lineHeightMultiple: CGFloat, kern: CGFloat = 0.0, textAlignment: NSTextAlignment = .center) -> UILabel {
         let label = UILabel()
         label.numberOfLines = 0
         label.textAlignment = textAlignment
@@ -47,6 +47,7 @@ extension UILabel {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: font,
             .foregroundColor: textColor,
+            .kern: kern,
             .paragraphStyle: paragraphStyle
         ]
         

@@ -23,7 +23,7 @@ class LoadingView: UIView {
     
     private(set) var loadLabel: GradientLabel = {
         let label = GradientLabel()
-           label.text = "LOADING"
+           label.text = "loading"
            label.font = UIFont.customFont(font: .sup, style: .ercharge, size: 20)
            label.textAlignment = .center
            label.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
@@ -60,7 +60,7 @@ class LoadingView: UIView {
         }
         
         loadLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.left.right.equalToSuperview()
             make.top.equalTo(loadView.snp.bottom).offset(16)
         }
     }
