@@ -53,7 +53,7 @@ class InfoHomeView: UIView {
         textStyle.lineHeightMultiple = 1.13
 
         let attributes: [NSAttributedString.Key: Any] = [
-            .font: UIFont.customFont(font: .author, style: .variable, size: 18),
+            .font: UIFont.customFont(font: .author, style: .regular, size: 18),
             .foregroundColor: UIColor.white,
             .paragraphStyle: textStyle
         ]

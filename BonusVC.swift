@@ -160,7 +160,7 @@ class BonusVC: UIViewController {
             }
             
             thanksBtn.snp.makeConstraints { make in
-                make.top.equalTo(imgCases.snp.bottom)
+                make.top.equalTo(imgCases.snp.bottom).offset(-36)
                 make.centerX.equalToSuperview()
                 make.width.equalTo(264)
             }

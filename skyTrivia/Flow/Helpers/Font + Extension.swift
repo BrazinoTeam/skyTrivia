@@ -8,13 +8,14 @@ import UIKit
 extension UIFont {
     
     enum CustomFonts: String {
-        case author = "Author"
+        case author = "AuthorVariable-Bold"
         case sup = "sup"
     }
     
     enum CustomFontStyle: String {
-        case variable = "-Variable"
+        case regular = "_Regular"
         case ercharge = "ercharge"
+        case medium = "_Medium"
     }
     
     static func customFont(
