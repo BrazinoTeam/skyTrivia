@@ -29,11 +29,20 @@ class InfoHomeVC: UIViewController {
     
     private func selectBtn() {
         contentView.backBtn.addTarget(self, action: #selector(back), for: .touchUpInside)
+        contentView.quizBtn.addTarget(self, action: #selector(quizViewTapped), for: .touchUpInside)
+
     }
 
     @objc private func back() {
         navigationController?.popViewController(animated: true)
     }
+    
+    @objc private func quizViewTapped() {
+       
+        let quizVC = InfoQuizVC(selectedAirplaneIndex: selectCount)
+        navigationController?.pushViewController(quizVC, animated: true)
+    }
+    
     private let imageCell: [UIImage] = [.imgLockheedVega, .imgBeechcraftModel18, .imgPiperPA, .imgCessna310, .imgBeechcraftBaron, .imgCessna402, .imgBeechcraftKingAir]
 
     private func updateInfo() {

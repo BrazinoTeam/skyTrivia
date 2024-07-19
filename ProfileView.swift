@@ -183,11 +183,12 @@ class ProfileView: UIView {
         let imageView = UIImageView()
         imageView.image = .imgUser
         imageView.contentMode = .scaleToFill
-        imageView.layer.cornerRadius = 60
         imageView.layer.shadowColor = UIColor(red: 1, green: 0.379, blue: 0.295, alpha: 0.8).cgColor
         imageView.layer.shadowOpacity = 1
         imageView.layer.shadowRadius = 35
         imageView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        imageView.layer.cornerRadius = 60
+        imageView.clipsToBounds = true
         return imageView
     }()
     

@@ -1,0 +1,1115 @@
+
+{
+    "airplanes": [
+        {
+            "id": 0,
+            "name": "Lockheed Vega",
+            "photoName": "cat1",
+            "info": "catinfo1",
+            "infoDurationMinutes": 10,
+            "quiz": {
+                "quizDurationMinutes": 5,
+                "questions": [
+                    {
+                        "question": "What distinguished the Lockheed Vega from other aircraft of its time?",
+                        "variants": [
+                            {
+                                "text": "Its high-wing configuration",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Its low-wing monoplane configuration",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Its biplane design",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Its triplane layout",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "Which material was predominantly used in the construction of the Lockheed Vega's structure?",
+                        "variants": [
+                            {
+                                "text": "Aluminum alloy",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Carbon fiber",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Steel",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Wood covered in fabric",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What feature of the Lockheed Vega contributed to its impressive speed and range capabilities?",
+                        "variants": [
+                            {
+                                "text": "Its heavyweight construction",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Its inefficient wing structure",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Its lack of streamlined design",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Its efficient wing design and advanced aerodynamics",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "Who achieved international acclaim for piloting a modified Lockheed Vega on a solo transatlantic flight in 1932?",
+                        "variants": [
+                            {
+                                "text": "Charles Lindbergh",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Amelia Earhart",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Howard Hughes",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Bessie Coleman",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What role did the Lockheed Vega primarily play in aviation history besides record-breaking flights?",
+                        "variants": [
+                            {
+                                "text": "Military combat missions",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Mail delivery, exploration, and air racing",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Cargo transportation",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Passenger transportation",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "Which decade saw the emergence of the Lockheed Vega as a prominent aircraft?",
+                        "variants": [
+                            {
+                                "text": "1910s",
+                                "isRight": false
+                            },
+                            {
+                                "text": "1940s",
+                                "isRight": false
+                            },
+                            {
+                                "text": "1930s",
+                                "isRight": false
+                            },
+                            {
+                                "text": "1920s",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What contributed to the Lockheed Vega's versatility?",
+                        "variants": [
+                            {
+                                "text": "Limited engine options",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Its rigid structure",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Its inability to fly long distances",
+                                "isRight": false
+                            },
+                            {
+                                "text": "A range of engine options",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What aviation milestone did Amelia Earhart achieve with the Lockheed Vega in 1932?",
+                        "variants": [
+                            {
+                                "text": "First woman to fly across the Pacific Ocean",
+                                "isRight": false
+                            },
+                            {
+                                "text": "First woman to circumnavigate the globe",
+                                "isRight": false
+                            },
+                            {
+                                "text": "First woman to fly across the Atlantic Ocean",
+                                "isRight": true
+                            },
+                            {
+                                "text": "First woman to fly across the continental United States",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "Which of the following was NOT a role served by the Lockheed Vega?",
+                        "variants": [
+                            {
+                                "text": "Mail delivery",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Crop dusting",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Exploration",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Air racing",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What legacy does the Lockheed Vega leave in aviation history?",
+                        "variants": [
+                            {
+                                "text": "Symbol of modern aviation design",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Pioneering example of long-range passenger aircraft",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Catalyst for the development of supersonic flight",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Icon of innovation and exploration during the Golden Age of Aviation",
+                                "isRight": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 1,
+            "name": "Beechcraft Model 18",
+            "photoName": "cat2",
+            "info": "",
+            "infoDurationMinutes": 10,
+            "quiz": {
+                "quizDurationMinutes": 5,
+                "questions": [
+                    {
+                        "question": "What is another name for the Beechcraft Model 18?",
+                        "variants": [
+                            {
+                                "text": "Beech 16",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Twin Beech",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Twin Piper",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Aero 18",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the primary landing gear configuration of the Beechcraft Model 18?",
+                        "variants": [
+                            {
+                                "text": "Tricycle landing gear",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Skis",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Tailwheel landing gear",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Floats",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "Which company developed the Beechcraft Model 18?",
+                        "variants": [
+                            {
+                                "text": "Cessna",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Beech Aircraft Corporation",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Piper Aircraft",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Boeing",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What was the original purpose of the Beechcraft Model 18?",
+                        "variants": [
+                            {
+                                "text": "Cargo transport",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Passenger airliner",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Military fighter",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Crop duster",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the roles that the Beechcraft Model 18 is commonly used for besides passenger transport?",
+                        "variants": [
+                            {
+                                "text": "Underwater exploration",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Aerial firefighting",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Air racing",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Suborbital space tourism",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is a notable variant of the Beechcraft Model 18 known for its enhancements?",
+                        "variants": [
+                            {
+                                "text": "Basic 18",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Super 18",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Mini 18",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Micro 18",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is a distinguishing feature of the Super 18 variant?",
+                        "variants": [
+                            {
+                                "text": "Decreased payload capacity",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Reduced wingspan",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Less powerful engines",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Upgraded avionics and increased payload capacity",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What contributes to the longevity of the Beechcraft Model 18?",
+                        "variants": [
+                            {
+                                "text": "Fragile construction",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Robust construction and timeless design",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Limited availability of spare parts",
+                                "isRight": false
+                            },
+                            {
+                                "text": "High maintenance costs",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the reputation of the Beechcraft Model 18 among pilots and enthusiasts?",
+                        "variants": [
+                            {
+                                "text": "Unreliable and obsolete",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Revered for its reliability, durability, and versatility",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Fragile and delicate",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Mediocre performance and handling",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the enduring legacy of the Beechcraft Model 18?",
+                        "variants": [
+                            {
+                                "text": "Forgotten in aviation history",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Revered as a beloved aircraft with legendary performance",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Short-lived popularity",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Limited impact on aviation development",
+                                "isRight": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 2,
+            "name": "Beechcraft Baron",
+            "photoName": "cat2",
+            "info": "",
+            "infoDurationMinutes": 10,
+            "quiz": {
+                "quizDurationMinutes": 5,
+                "questions": [
+                    {
+                        "question": "What is the primary wing configuration of the Beechcraft Baron?",
+                        "variants": [
+                            {
+                                "text": "High-wing",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Mid-wing",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Low-wing",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Biplane",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "How many engines does the Beechcraft Baron have?",
+                        "variants": [
+                            {
+                                "text": "Single engine",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Quad engines",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Twin engines",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Triple engines",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the approximate maximum cruising speed of the Beechcraft Baron?",
+                        "variants": [
+                            {
+                                "text": "100 knots",
+                                "isRight": false
+                            },
+                            {
+                                "text": "200 knots",
+                                "isRight": true
+                            },
+                            {
+                                "text": "150 knots",
+                                "isRight": false
+                            },
+                            {
+                                "text": "250 knots",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the seating capacity of the Beechcraft Baron?",
+                        "variants": [
+                            {
+                                "text": "2 passengers",
+                                "isRight": false
+                            },
+                            {
+                                "text": "6 passengers",
+                                "isRight": true
+                            },
+                            {
+                                "text": "4 passengers",
+                                "isRight": false
+                            },
+                            {
+                                "text": "8 passengers",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the main purposes for which the Beechcraft Baron is used?",
+                        "variants": [
+                            {
+                                "text": "Crop dusting",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Personal and business travel",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Military combat",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Airshow performances",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What type of cockpit does the Beechcraft Baron have?",
+                        "variants": [
+                            {
+                                "text": "Analog",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Glass cockpit",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Digital",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Manual",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What contributes to the Beechcraft Baron's impressive performance capabilities?",
+                        "variants": [
+                            {
+                                "text": "Single engine configuration",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Rugged construction",
+                                "isRight": false
+                            },
+                            {
+                                "text": "High-wing design",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Twin-engine configuration",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is a notable feature of the cabin of the Beechcraft Baron?",
+                        "variants": [
+                            {
+                                "text": "Limited headroom",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Spacious interior",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Small windows",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Uncomfortable seating",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the standout aspects of the Beechcraft Baron's construction?",
+                        "variants": [
+                            {
+                                "text": "Fragile airframe",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Rugged construction",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Thin wings",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Limited durability",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the enduring legacies of the Beechcraft Baron?",
+                        "variants": [
+                            {
+                                "text": "Forgotten in aviation history",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Revered as a timeless classic in general aviation",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Short-lived popularity",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Limited impact on aviation development",
+                                "isRight": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 3,
+            "name": "Cessna 402",
+            "photoName": "cat2",
+            "info": "",
+            "infoDurationMinutes": 10,
+            "quiz": {
+                "quizDurationMinutes": 5,
+                "questions": [
+                    {
+                        "question": "What is the primary wing configuration of the Cessna 402?",
+                        "variants": [
+                            {
+                                "text": "High-wing",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Mid-wing",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Low-wing",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Biplane",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "How many engines does the Cessna 402 have?",
+                        "variants": [
+                            {
+                                "text": "Single engine",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Quad engines",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Twin engines",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Triple engines",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the maximum cruising speed of the Cessna 402?",
+                        "variants": [
+                            {
+                                "text": "150 knots",
+                                "isRight": false
+                            },
+                            {
+                                "text": "250 knots",
+                                "isRight": false
+                            },
+                            {
+                                "text": "200 knots",
+                                "isRight": true
+                            },
+                            {
+                                "text": "300 knots",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the approximate seating capacity of the Cessna 402?",
+                        "variants": [
+                            {
+                                "text": "4 passengers",
+                                "isRight": false
+                            },
+                            {
+                                "text": "8 passengers",
+                                "isRight": false
+                            },
+                            {
+                                "text": "6 passengers",
+                                "isRight": false
+                            },
+                            {
+                                "text": "10 passengers",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the main purposes for which the Cessna 402 is used?",
+                        "variants": [
+                            {
+                                "text": "Crop dusting",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Regional and commuter airline operations",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Military combat",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Airshow performances",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What type of cockpit does the Cessna 402 have?",
+                        "variants": [
+                            {
+                                "text": "Analog",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Glass cockpit",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Digital",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Manual",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "How many passengers can the Cessna 402 accommodate in its cabin?",
+                        "variants": [
+                            {
+                                "text": " 4",
+                                "isRight": false
+                            },
+                            {
+                                "text": " 8",
+                                "isRight": false
+                            },
+                            {
+                                "text": " 6",
+                                "isRight": false
+                            },
+                            {
+                                "text": " 10",
+                                "isRight": true
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the standout features of the Cessna 402's construction?",
+                        "variants": [
+                            {
+                                "text": "Fragile airframe",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Rugged construction",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Weak landing gear",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Limited durability",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the notable aspects of the Cessna 402's performance?",
+                        "variants": [
+                            {
+                                "text": "Slow cruising speed",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Impressive cruising speed and range",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Limited range",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Poor stability",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the enduring legacies of the Cessna 402?",
+                        "variants": [
+                            {
+                                "text": "Forgotten in aviation history",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Revered as a reliable and versatile aircraft",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Short-lived popularity",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Limited impact on aviation development",
+                                "isRight": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "id": 4,
+            "name": "Beechcraft King Air",
+            "photoName": "cat10",
+            "info": "catinfo10",
+            "infoDurationMinutes": 10,
+            "quiz": {
+                "quizDurationMinutes": 5,
+                "questions": [
+                    {
+                        "question": "What type of engines power the Beechcraft King Air?",
+                        "variants": [
+                            {
+                                "text": "Single piston engines",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Quad turbofan engines",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Twin-turboprop engines",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Triple turboshaft engines",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "How many occupants can the cabin of the Beechcraft King Air accommodate?",
+                        "variants": [
+                            {
+                                "text": "Up to 5 occupants",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Up to 15 occupants",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Up to 10 occupants",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Up to 20 occupants",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is the primary purpose of the Beechcraft King Air?",
+                        "variants": [
+                            {
+                                "text": "Crop dusting",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Executive transport",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Military combat",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Airshow performances",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What type of cockpit layout does the Beechcraft King Air feature?",
+                        "variants": [
+                            {
+                                "text": "Analog cockpit",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Glass cockpit",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Manual cockpit",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Digital cockpit",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "How many engines provide power to the Beechcraft King Air?",
+                        "variants": [
+                            {
+                                "text": "One engine",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Three engines",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Two engines",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Four engines",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the notable features of the Beechcraft King Air's cabin?",
+                        "variants": [
+                            {
+                                "text": "Limited space",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Spacious and luxurious interior",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Lack of amenities",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Uncomfortable seating",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is a key strength of the Beechcraft King Air in terms of its operating capabilities?",
+                        "variants": [
+                            {
+                                "text": "Limited range",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Versatility in different missions and environments",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Inability to operate from short airstrips",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Lack of reliability",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What type of construction does the Beechcraft King Air feature?",
+                        "variants": [
+                            {
+                                "text": "Fragile construction",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Limited durability",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Rugged construction",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Weak construction",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the notable applications of the Beechcraft King Air in addition to executive transport?",
+                        "variants": [
+                            {
+                                "text": "Law enforcement surveillance",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Underwater research",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Space exploration",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Desert racing",
+                                "isRight": false
+                            }
+                        ]
+                    },
+                    {
+                        "question": "What is one of the enduring characteristics of the Beechcraft King Air?",
+                        "variants": [
+                            {
+                                "text": "Forgotten in aviation history",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Revered as a reliable and versatile aircraft",
+                                "isRight": true
+                            },
+                            {
+                                "text": "Limited popularity",
+                                "isRight": false
+                            },
+                            {
+                                "text": "Minimal impact on aviation development",
+                                "isRight": false
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

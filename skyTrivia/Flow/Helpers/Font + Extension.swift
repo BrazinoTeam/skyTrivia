@@ -35,6 +35,31 @@ extension UIFont {
         }
 }
 
+extension UIImageView {
+    func saveImageToLocal(image: UIImage, userID: String) {
+        if let data = image.jpegData(compressionQuality: 1.0) {
+            let fileURL = getDocumentsDirectory().appendingPathComponent("\(userID).png")
+            try? data.write(to: fileURL)
+        }
+    }
+    
+    func getImageFromLocal(userID: String) -> UIImage? {
+        let fileURL = getDocumentsDirectory().appendingPathComponent("\(userID).png")
+        do {
+            let data = try Data(contentsOf: fileURL)
+            return UIImage(data: data)
+        } catch {
+            print("Error loading image from local storage")
+            return nil
+        }
+    }
+    
+    private func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+}
+
 extension UILabel {
     static func createLabel(withText text: String, font: UIFont, textColor: UIColor, paragraphSpacing: CGFloat, lineHeightMultiple: CGFloat, kern: CGFloat = 0.0, textAlignment: NSTextAlignment = .center) -> UILabel {
         let label = UILabel()
