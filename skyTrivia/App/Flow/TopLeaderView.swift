@@ -1,12 +1,7 @@
-//
-//  TopLeadersCell.swift
-
 import UIKit
 import SnapKit
 
-class TopLeadersCell: UITableViewCell {
-    
-    static let reuseId = String(describing: TopLeadersCell.self)
+class TopLeadersView: UIView {
     
     private(set) lazy var firstContainer: UIView = {
         let view = UIView()
@@ -86,8 +81,8 @@ class TopLeadersCell: UITableViewCell {
         return label
     }()
     
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setupUI()
     }
     
@@ -97,30 +92,29 @@ class TopLeadersCell: UITableViewCell {
     
     private func setupUI() {
         backgroundColor = .clear
-        selectionStyle = .none
-        contentView.addSubview(firstContainer)
-        contentView.addSubview(secondContainer)
-        contentView.addSubview(thirdContainer)
+        addSubview(firstContainer)
+        addSubview(secondContainer)
+        addSubview(thirdContainer)
         
         firstContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(-16)
+            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
-            make.width.equalTo(110)
-            make.height.equalTo(190)
+            make.width.equalTo(100)
+            make.height.equalTo(217)
         }
         
         secondContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview()
             make.right.equalTo(firstContainer.snp.left).offset(-20)
-            make.width.equalTo(94.autoSize)
-            make.height.equalTo(154.autoSize)
+            make.width.equalTo(100.autoSize)
+            make.height.equalTo(188.autoSize)
         }
         
         thirdContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview()
             make.left.equalTo(firstContainer.snp.right).offset(20)
-            make.width.equalTo(94.autoSize)
-            make.height.equalTo(154.autoSize)
+            make.width.equalTo(100.autoSize)
+            make.height.equalTo(188.autoSize)
         }
         
         setupContainer(firstContainer, imageView: customImageView1, firstLabel: firstLabel1, secondLabel: secondLabel1, isFirstContainer: true)
@@ -151,14 +145,6 @@ class TopLeadersCell: UITableViewCell {
                 make.width.equalTo(100)
             }
         } else {
-            for i in "jollino" {
-                var b = 0
-                if i == "j" {
-                    b += 1
-                } else {
-                    b -= 1
-                }
-            };
             imageView.snp.makeConstraints { make in
                 make.top.equalTo(secondLabel.snp.bottom).offset(12)
                 make.left.right.equalToSuperview()
@@ -170,7 +156,6 @@ class TopLeadersCell: UITableViewCell {
     
     func configure(with users: [User]) {
         guard users.count >= 3 else { return }
-        print("Configuring cell with users: \(users)") // Debug print to check users in cell
 
         firstLabel1.text = users[0].name == nil ? "USER# \(users[0].id ?? 0)" : users[0].name
         firstLabel2.text = users[1].name == nil ? "USER# \(users[1].id ?? 0)" : users[1].name
@@ -179,5 +164,13 @@ class TopLeadersCell: UITableViewCell {
         secondLabel1.text = "\(users[0].score)"
         secondLabel2.text = "\(users[1].score)"
         secondLabel3.text = "\(users[2].score)"
+        
+        firstLabel1.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           firstLabel2.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           firstLabel3.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           secondLabel1.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           secondLabel2.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           secondLabel3.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+
     }
 }

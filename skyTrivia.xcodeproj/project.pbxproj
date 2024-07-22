@@ -45,11 +45,11 @@
 		18C702592C47EEDA00C7B214 /* GradientBorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C702582C47EEDA00C7B214 /* GradientBorderView.swift */; };
 		18F32C892C4E6F2300B4B08E /* LeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C882C4E6F2300B4B08E /* LeaderCell.swift */; };
 		18F32C8B2C4E6F2F00B4B08E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C8A2C4E6F2E00B4B08E /* User.swift */; };
-		18F32C8D2C4E6F3F00B4B08E /* TopLeadersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C8C2C4E6F3F00B4B08E /* TopLeadersCell.swift */; };
 		18F32C8F2C4E72D000B4B08E /* AuthTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C8E2C4E72D000B4B08E /* AuthTokenService.swift */; };
 		18F32C912C4E77F700B4B08E /* RequestPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C902C4E77F700B4B08E /* RequestPayload.swift */; };
 		18F32C932C4E780200B4B08E /* PostRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C922C4E780200B4B08E /* PostRequestService.swift */; };
 		18F32C952C4E781500B4B08E /* GetRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C942C4E781500B4B08E /* GetRequestService.swift */; };
+		18F32C972C4EABEB00B4B08E /* TopLeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F32C962C4EABEB00B4B08E /* TopLeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -92,11 +92,11 @@
 		18C702582C47EEDA00C7B214 /* GradientBorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBorderView.swift; sourceTree = "<group>"; };
 		18F32C882C4E6F2300B4B08E /* LeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderCell.swift; sourceTree = "<group>"; };
 		18F32C8A2C4E6F2E00B4B08E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		18F32C8C2C4E6F3F00B4B08E /* TopLeadersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopLeadersCell.swift; sourceTree = "<group>"; };
 		18F32C8E2C4E72D000B4B08E /* AuthTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTokenService.swift; sourceTree = "<group>"; };
 		18F32C902C4E77F700B4B08E /* RequestPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestPayload.swift; sourceTree = "<group>"; };
 		18F32C922C4E780200B4B08E /* PostRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestService.swift; sourceTree = "<group>"; };
 		18F32C942C4E781500B4B08E /* GetRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetRequestService.swift; sourceTree = "<group>"; };
+		18F32C962C4EABEB00B4B08E /* TopLeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopLeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,7 +225,7 @@
 				183FF8CB2C46919D00456E75 /* LeadersView.swift */,
 				18F32C882C4E6F2300B4B08E /* LeaderCell.swift */,
 				18F32C8A2C4E6F2E00B4B08E /* User.swift */,
-				18F32C8C2C4E6F3F00B4B08E /* TopLeadersCell.swift */,
+				18F32C962C4EABEB00B4B08E /* TopLeaderView.swift */,
 			);
 			name = Leaders;
 			sourceTree = "<group>";
@@ -390,6 +390,7 @@
 				183FF8D02C4691A800456E75 /* InfoView.swift in Sources */,
 				183FF8C82C46919400456E75 /* BonusView.swift in Sources */,
 				18F32C8B2C4E6F2F00B4B08E /* User.swift in Sources */,
+				18F32C972C4EABEB00B4B08E /* TopLeaderView.swift in Sources */,
 				183FF8CC2C46919D00456E75 /* LeadersView.swift in Sources */,
 				18C702522C47DD0700C7B214 /* InfoHomeView.swift in Sources */,
 				183FF8D42C469BD200456E75 /* Font + Extension.swift in Sources */,
@@ -401,7 +402,6 @@
 				183FF8C22C46918200456E75 /* ProfileVC.swift in Sources */,
 				1879A92C2C466F4900AB749C /* LoadingView.swift in Sources */,
 				183FF8C62C46918F00456E75 /* BonusVC.swift in Sources */,
-				18F32C8D2C4E6F3F00B4B08E /* TopLeadersCell.swift in Sources */,
 				18C702502C47DD0300C7B214 /* InfoHomeVC.swift in Sources */,
 				18C7024B2C47BBD300C7B214 /* HomeCell.swift in Sources */,
 				18C702572C47DD1D00C7B214 /* InfoQuizView.swift in Sources */,

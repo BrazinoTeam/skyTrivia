@@ -30,12 +30,9 @@ class HomeView: UIView {
         return imageView
     }()
     
-    private (set) var pointLabel: GradientLabel = {
-        let label = GradientLabel()
-        label.text = "\(MemoryApp.shared.scorePoints)"
-        label.font = .customFont(font: .sup, style: .ercharge, size: 20)
+    private (set) var pointLabel: UILabel = {
+        let label = UILabel.createLabel(withText: "\(MemoryApp.shared.scorePoints)", font: .customFont(font: .sup, style: .ercharge, size: 20), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1, kern: 3)
         label.textAlignment = .center
-        label.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
         return label
     }()
     

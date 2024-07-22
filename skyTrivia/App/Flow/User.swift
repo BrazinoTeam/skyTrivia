@@ -10,5 +10,6 @@ struct User: Codable {
     let score: Int
     let name: String?
     let balance: Int?
-    let postLabel: String?
+    let bubleLabel: String?
+    let gyms: String?
 }

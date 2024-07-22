@@ -27,14 +27,17 @@ class BonusVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateLabelScore()
+        updatePointsLabel()
         goDailyScreen()
 
     }
-    private func updateLabelScore() {
-        contentView.pointLabel.text = "\(uD.scorePoints)"
-        contentView.timerPointLabel.text = "\(uD.scorePoints)"
-        
+    
+    private func updatePointsLabel() {
+        contentView.pointLabel.text = "\(MemoryApp.shared.scorePoints)"
+        contentView.pointLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+        contentView.timerPointLabel.text = "\(MemoryApp.shared.scorePoints)"
+        contentView.timerPointLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+
     }
     
     private func selectBtn() {
@@ -195,7 +198,7 @@ class BonusVC: UIViewController {
             self.fullScreenView?.removeFromSuperview()
             self.fullScreenView = nil
             self.goDailyScreen()
-            self.updateLabelScore()
+            self.updatePointsLabel()
         }
     }
 }

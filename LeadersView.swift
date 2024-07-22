@@ -7,7 +7,6 @@ import SnapKit
 
 class LeadersView: UIView {
     
-    
     private (set) var bgImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .bgHome
@@ -30,12 +29,9 @@ class LeadersView: UIView {
         return imageView
     }()
     
-    private (set) var pointLabel: GradientLabel = {
-        let label = GradientLabel()
-        label.text = "\(MemoryApp.shared.scorePoints)"
-        label.font = .customFont(font: .sup, style: .ercharge, size: 20)
+    private (set) var pointLabel: UILabel = {
+        let label = UILabel.createLabel(withText: "\(MemoryApp.shared.scorePoints)", font: .customFont(font: .sup, style: .ercharge, size: 20), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1, kern: 3)
         label.textAlignment = .center
-        label.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
         return label
     }()
     
@@ -45,17 +41,40 @@ class LeadersView: UIView {
         return imageView
     }()
     
+    private lazy var scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
+    private lazy var contentView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
+    private(set) lazy var topLeadView: TopLeadersView = {
+        let view = TopLeadersView()
+        view.backgroundColor = .clear
+        return view
+    }()
+    
     private(set) lazy var leadersTable: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .clear
         tableView.showsVerticalScrollIndicator = false
+        tableView.isScrollEnabled = false
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 0)
         tableView.register(LeaderCell.self, forCellReuseIdentifier: LeaderCell.reuseId)
-        tableView.register(TopLeadersCell.self, forCellReuseIdentifier: TopLeadersCell.reuseId)
         tableView.separatorStyle = .none
+        let backgroundImage = UIImageView(image: .imgBGLeadCell)
+        backgroundImage.contentMode = .scaleToFill
+        tableView.backgroundView = backgroundImage
+
         return tableView
     }()
     
+    private var tableHeightConstraint: Constraint?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
@@ -67,15 +86,17 @@ class LeadersView: UIView {
     }
     
     private func setupUI() {
-
-        [bgImage, imgContPoints, imgTitle, leadersTable] .forEach(addSubview(_:))
+        [bgImage, imgContPoints, imgTitle, scrollView] .forEach(addSubview(_:))
         imgContPoints.addSubview(imgPlane)
         imgContPoints.addSubview(pointLabel)
-
+        
+        scrollView.addSubview(contentView)
+        
+        contentView.addSubview(topLeadView)
+        contentView.addSubview(leadersTable)
     }
     
     private func setupConstraints() {
-     
         bgImage.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
@@ -101,11 +122,31 @@ class LeadersView: UIView {
             make.top.equalTo(imgContPoints.snp.bottom).offset(40)
         }
         
-        leadersTable.snp.makeConstraints { make in
+        scrollView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(imgTitle.snp.bottom).offset(24)
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-56)
         }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+        }
+        
+        topLeadView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.height.equalTo(217)
+        }
+        
+        leadersTable.snp.makeConstraints { make in
+            make.top.equalTo(topLeadView.snp.bottom).offset(24)
+            make.left.right.bottom.equalToSuperview().inset(-4)
+            tableHeightConstraint = make.height.equalTo(0).constraint
+        }
+    }
+
+    func updateTableViewHeight(height: CGFloat) {
+        tableHeightConstraint?.update(offset: height)
     }
 }
-

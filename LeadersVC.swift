@@ -1,5 +1,3 @@
-//
-//  LeadersVC.swift
 
 import Foundation
 import UIKit
@@ -14,18 +12,24 @@ class LeadersVC: UIViewController {
     
     override func loadView() {
         view = LeadersView()
-   
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         loadUsers()
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadUsers()
+        updatePointsLabel()
+    }
+    
+    
+    private func updatePointsLabel() {
         contentView.pointLabel.text = "\(MemoryApp.shared.scorePoints)"
-
+        contentView.pointLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
     }
     
     private func configureTableView() {
@@ -34,61 +38,112 @@ class LeadersVC: UIViewController {
         contentView.leadersTable.separatorStyle = .none
     }
     
-    func sortPointsUsers() {
-        users.sort {
-            $1.score < $0.score
-        }
+    private func sortPointsUsers() {
+        users.sort { $1.score < $0.score }
     }
     
-    func loadUsers() {
+    private func loadUsers() {
         GetRequestService.shared.getLeadeboards { [weak self] users in
             guard let self = self else { return }
             self.users = users
-            self.contentView.leadersTable.reloadData()
             self.sortPointsUsers()
-        } errorCompletion: { [weak self] error in
-            guard self != nil else { return }
-            }
+            self.updateContentView()
+        } errorCompletion: { error in
+            print("Error loading users: \(error)")
         }
+    }
+    
+    private func updateContentView() {
+        let topThreeUsers = Array(users.prefix(3))
+        let remainingUsers = Array(users.dropFirst(3))
+        
+        contentView.topLeadView.configure(with: topThreeUsers)
+        contentView.leadersTable.reloadData()
+        updateTableViewHeight()
+    }
+    
+    private func updateTableViewHeight() {
+        contentView.leadersTable.layoutIfNeeded()
+        let height = contentView.leadersTable.contentSize.height
+        contentView.updateTableViewHeight(height: height)
+    }
 }
-
 
 extension LeadersVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count > 3 ? users.count - 3 + 1 : users.count
+        return users.count > 3 ? users.count - 3 : 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: TopLeadersCell.reuseId, for: indexPath) as? TopLeadersCell else {
-                return UITableViewCell()
-            }
-            let topUsers = Array(users.prefix(3))
-            cell.configure(with: topUsers)
-            return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: LeaderCell.reuseId, for: indexPath) as? LeaderCell else {
-                return UITableViewCell()
-            }
-            let user = users[indexPath.row + 2] // Shift the index by 2 to skip top 3 users
-            setupCell(leaderCell: cell, number: indexPath.row + 3, user: user)
+        let cell = tableView.dequeueReusableCell(withIdentifier: LeaderCell.reuseId, for: indexPath)
+        
+        guard let leaderCell = cell as? LeaderCell else {
             return cell
         }
+        
+        let index = indexPath.row + 3
+        let number = index + 1
+        let user = users[index]
+        
+        setupCell(leaderCell: leaderCell, number: number, user: user)
+        
+        return leaderCell
     }
-    
-    func setupCell(leaderCell: LeaderCell, number: Int, user: User) {
-      
+    private func setupCell(leaderCell: LeaderCell, number: Int, user: User) {
+        let borderView = leaderCell.leaderView.viewWithTag(101) as? UIView ?? UIView()
+        borderView.tag = 101
+
         if user.id == MemoryApp.shared.userID {
-            leaderCell.leaderView.backgroundColor = UIColor.orange
+            borderView.removeFromSuperview()
+
+            // Create gradient border
+            let gradientLayer = CAGradientLayer()
+            gradientLayer.colors = [UIColor.cBiegeGradOne.cgColor, UIColor.cBiegeGradTwo.cgColor]
+            gradientLayer.startPoint = CGPoint(x: 0.5, y: 0.0)
+            gradientLayer.endPoint = CGPoint(x: 0.5, y: 1.0)
+            gradientLayer.frame = leaderCell.leaderView.bounds
+
+            // Create shape layer as mask with rounded corners
+            let shapeLayer = CAShapeLayer()
+            shapeLayer.lineWidth = 4
+            let path = UIBezierPath(roundedRect: leaderCell.leaderView.bounds, cornerRadius: 6).cgPath
+            shapeLayer.path = path
+            shapeLayer.fillColor = UIColor.clear.cgColor
+            shapeLayer.strokeColor = UIColor.black.cgColor
+            gradientLayer.mask = shapeLayer
+
+            // Remove existing gradient layers to avoid duplicates
+            leaderCell.leaderView.layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
+
+            leaderCell.leaderView.layer.addSublayer(gradientLayer)
+            
+            // Apply corner radius to the view itself
+            leaderCell.leaderView.layer.cornerRadius = 6
+            leaderCell.leaderView.layer.masksToBounds = true
         } else {
-            leaderCell.leaderView.backgroundColor = UIColor.cDarkRed
+            if borderView.superview == nil {
+                leaderCell.leaderView.addSubview(borderView)
+                borderView.snp.remakeConstraints { make in
+                    make.height.equalTo(2)
+                    make.bottom.equalTo(leaderCell.leaderView)
+                    make.left.right.equalTo(leaderCell.leaderView).inset(10)
+                }
+            }
+            leaderCell.leaderView.layer.borderWidth = 0
+            leaderCell.leaderView.layer.borderColor = UIColor.clear.cgColor
+            leaderCell.leaderView.layer.cornerRadius = 0
+
+            // Remove existing gradient layers to avoid duplicates
+            leaderCell.leaderView.layer.sublayers?.filter { $0 is CAGradientLayer }.forEach { $0.removeFromSuperlayer() }
         }
+
         leaderCell.numberLabel.text = "\(number)"
         leaderCell.scoreLabel.text = "\(user.score)"
-        leaderCell.nameLabel.text = user.name == nil ? "USER# \(user.id ?? 0)" : user.name
+        leaderCell.nameLabel.text = user.name == nil || user.name == "" ? "USER# \(user.id ?? 0)" : user.name
+        leaderCell.numberLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+        leaderCell.nameLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+        leaderCell.scoreLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return indexPath.row == 0 ? 220 : UITableView.automaticDimension
-    }
+
+
 }

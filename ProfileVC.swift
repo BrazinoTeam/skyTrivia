@@ -29,11 +29,19 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         checkFotoLoad()
+        updateLabel()
     }
     
     private func configurePicker() {
         imagePicker.delegate = self
         imagePicker.allowsEditing = false
+    }
+    
+    
+    private func updateLabel() {
+        contentView.analyticViewThree.titleLabel.text = "\(MemoryApp.shared.scorePoints)"
+        contentView.analyticViewOne.titleLabel.text = "\(MemoryApp.shared.passedTheQuiz)"
+        contentView.analyticViewTwo.titleLabel.text = "\(MemoryApp.shared.failedQuiz)"
     }
     
     private func buttonsActive() {

@@ -84,24 +84,29 @@ extension UILabel {
     }
 }
 
-extension UIButton {
-    func configureButton(withTitle title: String, font: UIFont, titleColor: UIColor, normalImage: UIImage?, highlightedImage: UIImage?, kern: CGFloat = 0.0) {
-        self.setBackgroundImage(normalImage, for: .normal)
-        self.setBackgroundImage(highlightedImage, for: .highlighted)
-        
-        let attributedTitle = NSAttributedString(
-            string: title,
-            attributes: [
-                .font: font,
-                .foregroundColor: titleColor,
-                .kern: kern
-            ]
-        )
-        
-        self.setAttributedTitle(attributedTitle, for: .normal)
-        
-        self.titleLabel?.lineBreakMode = .byWordWrapping
-        self.titleLabel?.textAlignment = .center
+extension UILabel {
+    func setGradientText(colors: [UIColor]) {
+        // Обновляем layout, чтобы получить правильные размеры
+        self.layoutIfNeeded()
+
+        // Убеждаемся, что размеры ненулевые
+        guard self.bounds.size != .zero else { return }
+
+        // Создаем CAGradientLayer
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.bounds
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.startPoint = CGPoint(x: 0.5, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0.5, y: 1)
+
+        // Создаем image из gradient layer используя UIGraphicsImageRenderer
+        let renderer = UIGraphicsImageRenderer(bounds: gradientLayer.bounds)
+        let gradientImage = renderer.image { context in
+            gradientLayer.render(in: context.cgContext)
+        }
+
+        // Устанавливаем gradient image как текстовый цвет
+        self.textColor = UIColor(patternImage: gradientImage)
     }
 }
 

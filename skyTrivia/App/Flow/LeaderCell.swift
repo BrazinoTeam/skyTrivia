@@ -30,6 +30,10 @@ class LeaderCell: UITableViewCell {
     private(set) lazy var scoreLabel: UILabel = {
         let label = UILabel.createLabel(withText: "1", font: .customFont(font: .sup, style: .ercharge, size: 20), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1, kern: 3)
         label.textColor = .white
+        label.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        label.layer.shadowOpacity = 1
+        label.layer.shadowRadius = 2
+        label.layer.shadowOffset = CGSize(width: 2, height: 5)
         return label
     }()
 
@@ -45,14 +49,14 @@ class LeaderCell: UITableViewCell {
     
     private(set) lazy var leaderView: UIView = {
         let view = UIView()
-        view.backgroundColor = .cDarkRed
-        view.layer.cornerRadius = 12
+        view.backgroundColor = .clear
+        view.layer.cornerRadius = 6
+        view.clipsToBounds = true
         return view
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupUI()
         setUpConstraints()
     }
@@ -63,7 +67,9 @@ class LeaderCell: UITableViewCell {
             contentView.backgroundColor = .clear
             selectionStyle = .none
             [userImage, imgPoints, nameLabel, scoreLabel, numberLabel] .forEach(leaderView.addSubview(_:))
-
+            numberLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+            nameLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+            scoreLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
     }
         
     required init?(coder: NSCoder) {
@@ -83,7 +89,7 @@ class LeaderCell: UITableViewCell {
             make.top.equalToSuperview().offset(4)
             make.left.right.equalToSuperview().inset(20)
             make.bottom.equalToSuperview().offset(-4)
-            make.height.equalTo(56.autoSize)
+            make.height.equalTo(46.autoSize)
             make.width.equalTo(354.autoSize)
         }
         

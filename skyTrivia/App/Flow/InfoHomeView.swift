@@ -127,7 +127,7 @@ class InfoHomeView: UIView {
         bodyFieldInfo.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(gradientBorderView.snp.bottom).offset(24)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-48)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-64)
         }
         
         quizBtn.snp.makeConstraints { make in

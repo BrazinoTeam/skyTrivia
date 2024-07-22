@@ -25,6 +25,16 @@ class HomeVC: UIViewController {
         tappedButtons()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        updatePointsLabel()
+    }
+    
+    private func updatePointsLabel() {
+        contentView.pointLabel.text = "\(MemoryApp.shared.scorePoints)"
+        contentView.pointLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+    }
+    
     private func configureCollection() {
         contentView.collectionView.delegate = self
         contentView.collectionView.dataSource = self
