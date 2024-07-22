@@ -41,11 +41,26 @@ class BonusVC: UIViewController {
         contentView.setButtonTargets(target: self, action: #selector(buttonTapped(_:)))
     }
     
+    func updateScore() {
+      
+       let payload = UpdatePayload(name: nil, score: MemoryApp.shared.scorePoints)
+        PostRequestService.shared.updateData(id: MemoryApp.shared.userID!, payload: payload) { result in
+           DispatchQueue.main.async {
+               switch result {
+               case .success(_):
+                   print("Success")
+               case .failure(let failure):
+                   print("Error - \(failure.localizedDescription)")
+               }
+           }
+       }
+   }
+    
     @objc private func buttonTapped(_ sender: UIButton) {
         print("sender - \(sender.tag)")
         let randomBonus = arrayPoints.randomElement() ?? 0
         uD.scorePoints += randomBonus
-        
+        updateScore()
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.presentModalView(points: randomBonus)
         }

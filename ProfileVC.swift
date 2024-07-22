@@ -190,7 +190,7 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         print("Клавиатура спрятана")
-//        RatingService.shared.updateUser(userId: MemoryApp.shared.userID ?? 0, name: MemoryApp.shared.userName ?? "User# \(MemoryApp.shared.userID ?? 0)")
+        updateName()
         return true
     }
     
@@ -201,6 +201,24 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
             self.fullScreenView?.removeFromSuperview()
             self.fullScreenView = nil
             self.contentView.nameLabel.text = "\(MemoryApp.shared.userName ?? "User Name")"
+            self.updateName()
+        }
+    }
+    
+    func updateName() {
+      
+        if MemoryApp.shared.userName != nil {
+            let payload = UpdatePayload(name: MemoryApp.shared.userName, score: nil)
+            PostRequestService.shared.updateData(id: MemoryApp.shared.userID!, payload: payload) { result in
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(_):
+                        print("Success")
+                    case .failure(let failure):
+                        print("Error - \(failure.localizedDescription)")
+                    }
+                }
+            }
         }
     }
 }

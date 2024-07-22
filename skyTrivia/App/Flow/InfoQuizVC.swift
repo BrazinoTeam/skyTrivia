@@ -3,9 +3,13 @@
 
 import Foundation
 import UIKit
+import SnapKit
 
 class InfoQuizVC: UIViewController {
     
+    private var fullScreenWinView: UIView?
+    private var fullScreenLoseView: UIView?
+
     private var contentView: InfoQuizView {
         view as? InfoQuizView ?? InfoQuizView()
     }
@@ -98,12 +102,10 @@ class InfoQuizVC: UIViewController {
             MemoryApp.shared.scorePoints += 10
         }
         
-        // Перекрасить выбранную ячейку в зависимости от правильности ответа
         if let selectedCell = contentView.collectionView.cellForItem(at: selectedIndexPath) as? QuizOptionCell {
             selectedCell.setCorrect(isCorrect)
         }
         
-        // Найти ячейку с правильным ответом и изменить её цвет фона на зелёный
         for (index, variant) in variants.enumerated() {
             if variant.isRight {
                 if let cell = contentView.collectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? QuizOptionCell {
@@ -112,19 +114,21 @@ class InfoQuizVC: UIViewController {
             }
         }
         
-        // Обновление цвета круга
         contentView.updateCircleColor(at: countAnswers, isCorrect: isCorrect, isCurrent: false)
         
-        // Переход к следующему вопросу через 2 секунды
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             self.contentView.quizBtn.isEnabled = true
             self.countAnswers += 1
             
             if self.countAnswers >= 10 {
                 if self.isRightCountAnswers >= 6 {
-//                    self.navigateToQuizWinVC()
+                    MemoryApp.shared.scorePoints += 100
+                    MemoryApp.shared.passedTheQuiz += 1
+                    self.updateScore()
+                    self.presentModalView(title: "Congratulations!", subtitle: .imgSubTitleWin)
                 } else {
-//                    self.navigateToQuizLoseVC()
+                    MemoryApp.shared.failedQuiz += 1
+                    self.presentModalViewLose(title: "Unfortunately,", subtitle: .imgSubTitleLose)
                 }
             } else {
                 self.currentQuestionIndex += 1
@@ -197,25 +201,37 @@ class InfoQuizVC: UIViewController {
     private func updateAnswerButtonState() {
         if selectedIndexPath != nil {
             contentView.quizBtn.isEnabled = true
-            contentView.quizBtn.setBackgroundImage(.btnQuiz, for: .normal)
-            contentView.quizBtn.setBackgroundImage(.btnQuizSelect, for: .highlighted)
+            contentView.quizBtn.setBackgroundImage(.btnAnswer, for: .normal)
+            contentView.quizBtn.setBackgroundImage(.btnAnswerSelect, for: .highlighted)
+            contentView.quizBtn.layer.shadowColor = UIColor(red: 1, green: 0.379, blue: 0.295, alpha: 0.8).cgColor
+            contentView.quizBtn.layer.shadowOpacity = 1
+            contentView.quizBtn.layer.shadowRadius = 35
+            contentView.quizBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
+
         } else {
             contentView.quizBtn.isEnabled = false
-            contentView.quizBtn.setBackgroundImage(.btnQuizLocked, for: .normal)
+            contentView.quizBtn.setBackgroundImage(.btnAnswerLocked, for: .normal)
+            contentView.quizBtn.layer.shadowColor = UIColor.darkGray.cgColor
+            contentView.quizBtn.layer.shadowOpacity = 1
+            contentView.quizBtn.layer.shadowRadius = 35
+            contentView.quizBtn.layer.shadowOffset = CGSize(width: 0, height: 2)
         }
     }
     
-//    private func navigateToQuizWinVC() {
-//        let quizWinVC = QuizWinVC()
-//        quizWinVC.coints = isRightCountAnswers
-//        quizWinVC.quizIndex = selectedAirplaneIndex
-//        navigationController?.pushViewController(quizWinVC, animated: true)
-//    }
-    
-//    private func navigateToQuizLoseVC() {
-//        let quizLoseVC = QuizLoseVC()
-//        navigationController?.pushViewController(quizLoseVC, animated: true)
-//    }
+    func updateScore() {
+      
+       let payload = UpdatePayload(name: nil, score: MemoryApp.shared.scorePoints)
+        PostRequestService.shared.updateData(id: MemoryApp.shared.userID!, payload: payload) { result in
+           DispatchQueue.main.async {
+               switch result {
+               case .success(_):
+                   print("Success")
+               case .failure(let failure):
+                   print("Error - \(failure.localizedDescription)")
+               }
+           }
+       }
+   }
 }
 
 extension InfoQuizVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -254,8 +270,208 @@ extension InfoQuizVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
         let width = (collectionView.frame.width - 20) // Adjusting width for spacing
         return CGSize(width: width, height: 40)
     }
+}
+extension InfoQuizVC {
     
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-//        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
-//    }
+    func presentModalView(title: String, subtitle: UIImage) {
+        if fullScreenWinView == nil {
+            fullScreenWinView = UIView(frame: self.view.bounds)
+            fullScreenWinView!.backgroundColor = .black.withAlphaComponent(0.8)
+            fullScreenWinView!.alpha = 0
+            
+            let viewContainer = UIView()
+            viewContainer.backgroundColor = .clear
+            viewContainer.layer.shadowColor = UIColor.cOrange.cgColor
+            viewContainer.layer.shadowOpacity = 1
+            viewContainer.layer.shadowRadius = 35
+            viewContainer.layer.shadowOffset = CGSize(width: 0, height: 2)
+            fullScreenWinView!.addSubview(viewContainer)
+            
+            let bgImage = UIImageView(image: .imgWinLoseCont)
+            bgImage.contentMode = .scaleToFill
+            bgImage.clipsToBounds = true
+            viewContainer.addSubview(bgImage)
+            
+            let titleLabel = GradientLabel()
+            titleLabel.text = title
+            titleLabel.font = .customFont(font: .sup, style: .ercharge, size: 20)
+            titleLabel.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
+            titleLabel.numberOfLines = 0
+            titleLabel.textAlignment = .center
+            viewContainer.addSubview(titleLabel)
+            
+            let subTitleView = UIImageView(image: subtitle)
+            subTitleView.contentMode = .scaleAspectFit
+            viewContainer.addSubview(subTitleView)
+            
+            let imgCointWin = UIImageView(image: .imgPointsWin)
+            imgCointWin.contentMode = .scaleAspectFit
+            viewContainer.addSubview(imgCointWin)
+            
+            let imageBonusView = UIImageView(image: .imgCases)
+            imageBonusView.contentMode = .scaleAspectFit
+            viewContainer.addSubview(imageBonusView)
+            
+            
+            let backButton = UIButton()
+            backButton.setBackgroundImage(.btnOK, for: .normal)
+            backButton.setBackgroundImage(.btnOKSelect, for: .highlighted)
+            backButton.layer.shadowColor = UIColor(red: 1, green: 0.379, blue: 0.295, alpha: 0.8).cgColor
+            backButton.layer.shadowOpacity = 1
+            backButton.layer.shadowRadius = 35
+            backButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+            backButton.addTarget(self, action: #selector(tappedCloseWin), for: .touchUpInside)
+            fullScreenWinView!.addSubview(backButton)
+
+            viewContainer.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalTo(567.autoSize)
+                make.width.equalTo(329.autoSize)
+            }
+
+            bgImage.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
+            titleLabel.snp.makeConstraints { make in
+                make.left.right.equalToSuperview().inset(32)
+                make.top.equalToSuperview().offset(32.autoSize)
+            }
+            
+            subTitleView.snp.makeConstraints { make in
+                make.centerX.equalTo(viewContainer)
+                make.top.equalTo(titleLabel.snp.bottom).offset(8.autoSize)
+            }
+            
+            imgCointWin.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(subTitleView.snp.bottom).offset(20.autoSize)
+            }
+            
+            imageBonusView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(imgCointWin.snp.bottom)
+            }
+            
+            backButton.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(imageBonusView.snp.bottom)
+                make.height.equalTo(86)
+                make.width.equalTo(290)
+            }
+            
+            
+            self.view.addSubview(fullScreenWinView!)
+        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.fullScreenWinView!.alpha = 1
+        })
+    }
+
+    @objc func tappedCloseWin() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.fullScreenWinView?.alpha = 0
+        }) { _ in
+            self.fullScreenWinView?.removeFromSuperview()
+            self.fullScreenWinView = nil
+            self.navigationController?.popToRootViewController(animated: false)
+        }
+    }
+    
+    func presentModalViewLose(title: String, subtitle: UIImage) {
+        if fullScreenLoseView == nil {
+            fullScreenLoseView = UIView(frame: self.view.bounds)
+            fullScreenLoseView!.backgroundColor = .black.withAlphaComponent(0.8)
+            fullScreenLoseView!.alpha = 0
+            
+            let viewContainer = UIView()
+            viewContainer.backgroundColor = .clear
+            viewContainer.layer.shadowColor = UIColor.cOrange.cgColor
+            viewContainer.layer.shadowOpacity = 1
+            viewContainer.layer.shadowRadius = 35
+            viewContainer.layer.shadowOffset = CGSize(width: 0, height: 2)
+            fullScreenLoseView!.addSubview(viewContainer)
+            
+            let bgImage = UIImageView(image: .imgWinLoseCont)
+            bgImage.contentMode = .scaleToFill
+            bgImage.clipsToBounds = true
+            viewContainer.addSubview(bgImage)
+            
+            let titleLabel = GradientLabel()
+            titleLabel.text = title
+            titleLabel.font = .customFont(font: .sup, style: .ercharge, size: 20)
+            titleLabel.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
+            titleLabel.numberOfLines = 0
+            titleLabel.textAlignment = .center
+            viewContainer.addSubview(titleLabel)
+            
+            let subTitleView = UIImageView(image: subtitle)
+            subTitleView.contentMode = .scaleAspectFit
+            viewContainer.addSubview(subTitleView)
+      
+            let imageBonusView = UIImageView(image: .imgCasesLose)
+            imageBonusView.contentMode = .scaleAspectFit
+            viewContainer.addSubview(imageBonusView)
+            
+            let backButton = UIButton()
+            backButton.setBackgroundImage(.btnOK, for: .normal)
+            backButton.setBackgroundImage(.btnOKSelect, for: .highlighted)
+            backButton.layer.shadowColor = UIColor(red: 1, green: 0.379, blue: 0.295, alpha: 0.8).cgColor
+            backButton.layer.shadowOpacity = 1
+            backButton.layer.shadowRadius = 35
+            backButton.layer.shadowOffset = CGSize(width: 0, height: 2)
+            backButton.addTarget(self, action: #selector(tappedCloseLose), for: .touchUpInside)
+            fullScreenLoseView!.addSubview(backButton)
+
+            viewContainer.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.centerY.equalToSuperview()
+                make.height.equalTo(510.autoSize)
+                make.width.equalTo(329.autoSize)
+            }
+
+            bgImage.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+
+            titleLabel.snp.makeConstraints { make in
+                make.left.right.equalToSuperview().inset(32)
+                make.top.equalToSuperview().offset(32.autoSize)
+            }
+            
+            subTitleView.snp.makeConstraints { make in
+                make.centerX.equalTo(viewContainer)
+                make.top.equalTo(titleLabel.snp.bottom).offset(8.autoSize)
+            }
+            
+            imageBonusView.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(subTitleView.snp.bottom).offset(20)
+            }
+            
+            backButton.snp.makeConstraints { make in
+                make.centerX.equalToSuperview()
+                make.top.equalTo(imageBonusView.snp.bottom)
+                make.height.equalTo(86)
+                make.width.equalTo(290)
+            }
+            
+            
+            self.view.addSubview(fullScreenLoseView!)
+        }
+        UIView.animate(withDuration: 0.5, animations: {
+            self.fullScreenLoseView!.alpha = 1
+        })
+    }
+
+    @objc func tappedCloseLose() {
+        UIView.animate(withDuration: 0.5, animations: {
+            self.fullScreenLoseView?.alpha = 0
+        }) { _ in
+            self.fullScreenLoseView?.removeFromSuperview()
+            self.fullScreenLoseView = nil
+            self.navigationController?.popToRootViewController(animated: false)
+        }
+    }
 }

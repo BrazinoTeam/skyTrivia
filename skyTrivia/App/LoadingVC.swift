@@ -4,6 +4,8 @@ import SnapKit
 
 class LoadingVC: UIViewController {
     
+    private var auth = TokenService.shared
+
     var contentView: LoadingView {
         view as? LoadingView ?? LoadingView()
     }
@@ -90,41 +92,39 @@ class LoadingVC: UIViewController {
     
     func loadTabBar() {
       
-//            Task {
-//                do {
-//                    try await auth.authenticate()
-//                    checkToken()
-//                    createUserIfNeededUses()
+            Task {
+                do {
+                    try await auth.authenticate()
+                    checkToken()
+                    createUser()
                     let vc = NavigationTabBar()
                     let navigationController = UINavigationController(rootViewController: vc)
                     navigationController.modalPresentationStyle = .fullScreen
                     present(navigationController, animated: true)
                     navigationController.setNavigationBarHidden(true, animated: false)
-//                } catch {
-//                    print("Error: \(error.localizedDescription)")
-//                }
-//            }
+                } catch {
+                    print("Error: \(error.localizedDescription)")
+                }
+            }
         }
     
-//    private func createUserIfNeededUses() {
-//        if UserDef.shared.userID == nil {
-//            let uuid = UUID().uuidString
-//            Task {
-//                do {
-//                    let player = try await PostRequestService.shared.createPlayerUser(username: uuid)
-//                    UserDef.shared.userID = player.id
-//                } catch {
-//                    print("Ошибка создания пользователя: \(error.localizedDescription)")
-//                }
-//            }
-//        }
-//    }
+    private func createUser() {
+        if MemoryApp.shared.userID == nil {
+            let payload = CreateReqPay(name: nil, score: MemoryApp.shared.scorePoints)
+            PostRequestService.shared.createUser(payload: payload) { [weak self] createResponse in
+                guard let self = self else { return }
+                MemoryApp.shared.userID = createResponse.id
+            } errorCompletion: { error in
+                print("Ошибка получени данных с бека")
+            }
+        }
+    }
 
-//    private func checkToken() {
-//        guard let token = auth.token else {
-//            return
-//        }
-//    }
+    private func checkToken() {
+        guard let token = auth.token else {
+            return
+        }
+    }
 }
 
 extension UIColor {

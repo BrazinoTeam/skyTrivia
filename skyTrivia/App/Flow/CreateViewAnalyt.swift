@@ -17,9 +17,8 @@ class CreateViewAnalyt: UIView {
         return imageView
     }()
     
-    private (set) var titleLabel: GradientLabel = {
-        let label = GradientLabel()
-        label.text = "123456"
+    private (set) var titleLabel: GradientLabelProfile = {
+        let label = GradientLabelProfile()
         label.font = .customFont(font: .sup, style: .ercharge, size: 20)
         label.textAlignment = .left
         label.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
@@ -65,6 +64,7 @@ class CreateViewAnalyt: UIView {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(imgIcon.snp.top).offset(8)
             make.left.equalTo(imgIcon.snp.right).offset(12)
+            make.width.equalTo(200)
         }
         
         nameLabel.snp.makeConstraints { make in

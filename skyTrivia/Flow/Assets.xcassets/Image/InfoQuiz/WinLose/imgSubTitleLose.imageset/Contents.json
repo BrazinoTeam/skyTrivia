@@ -1,0 +1,26 @@
+{
+  "images" : [
+    {
+      "filename" : "you didn't score enough points this time. Review the information about the airplanes and try again. Keep practicing, and you'll improve!.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "you didn't score enough points this time. Review the information about the airplanes and try again. Keep practicing, and you'll improve! (1).png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "you didn't score enough points this time. Review the information about the airplanes and try again. Keep practicing, and you'll improve! (2).png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "localizable" : true
+  }
+}

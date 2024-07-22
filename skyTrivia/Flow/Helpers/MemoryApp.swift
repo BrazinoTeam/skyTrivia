@@ -10,19 +10,28 @@ class MemoryApp {
     
     var scorePoints: Int {
         get {
-            return defaults.integer(forKey: "scorePoints", defaultValue: 1500)
+            return defaults.integer(forKey: "scorePoints", defaultValue: 0)
         }
         set {
             defaults.set(newValue, forKey: "scorePoints")
         }
     }
     
-    var answerQuestions: Int {
+    var passedTheQuiz: Int {
         get {
-            return defaults.integer(forKey: "answerQuestions", defaultValue: 0)
+            return defaults.integer(forKey: "passedTheQuiz", defaultValue: 0)
         }
         set {
-            defaults.set(newValue, forKey: "answerQuestions")
+            defaults.set(newValue, forKey: "passedTheQuiz")
+        }
+    }
+    
+    var failedQuiz: Int {
+        get {
+            return defaults.integer(forKey: "failedQuiz", defaultValue: 0)
+        }
+        set {
+            defaults.set(newValue, forKey: "failedQuiz")
         }
     }
     

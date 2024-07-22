@@ -46,7 +46,7 @@ class InfoHomeView: UIView {
         return imageView
     }()
     
-    private lazy var bodyFieldInfo: UITextView = {
+    private(set) lazy var bodyFieldInfo: UITextView = {
         let textView = UITextView()
         let textStyle = NSMutableParagraphStyle()
         textStyle.lineBreakMode = .byWordWrapping
@@ -58,7 +58,7 @@ class InfoHomeView: UIView {
             .paragraphStyle: textStyle
         ]
         
-        let attributedText = NSAttributedString(string: "The Lockheed Vega is an iconic aircraft that played a significant role in the history of aviation. First designed by Lockheed in 1927, the Vega was intended as a high-performance, long-range aircraft. Its design featured a cantilever wing, which eliminated the need for struts, contributing to its sleek, aerodynamic shape. The aircraft was built with a wooden fuselage covered in plywood, which provided strength while keeping the weight down. The Vega could carry up to six passengers and was initially powered by a 450-horsepower Pratt & Whitney Wasp radial engine, giving it a maximum speed of approximately 135 miles per hour and a range of around 700 miles.\nThe Vega gained fame for its involvement in several notable flights and records. One of the most famous Vegans, the \"Winnie Mae,\" was flown by Wiley Post, who set a record for flying around the world solo in 1933. The aircraft also played a crucial role in Amelia Earhart's historic transatlantic solo flight in 1932, making her the first woman to achieve this feat. These record-breaking flights showcased the Vega's reliability, endurance, and advanced design for its time.\nBesides its record-breaking flights, the Vega was used in various roles, including mail delivery, exploration, and air racing. It was renowned for its ruggedness and ability to operate in harsh conditions, which made it a favorite among pilots who required a dependable and versatile aircraft. The Vega's design and performance left a lasting legacy in aviation history, influencing subsequent aircraft designs and cementing its place as a pioneering model in the evolution of aviation.\n", attributes: attributes)
+        let attributedText = NSAttributedString(string: "      The Lockheed Vega is an iconic aircraft that played a significant role in the history of aviation. First designed by Lockheed in 1927, the Vega was intended as a high-performance, long-range aircraft. Its design featured a cantilever wing, which eliminated the need for struts, contributing to its sleek, aerodynamic shape. The aircraft was built with a wooden fuselage covered in plywood, which provided strength while keeping the weight down. The Vega could carry up to six passengers and was initially powered by a 450-horsepower Pratt & Whitney Wasp radial engine, giving it a maximum speed of approximately 135 miles per hour and a range of around 700 miles.\nThe Vega gained fame for its involvement in several notable flights and records. One of the most famous Vegans, the \"Winnie Mae,\" was flown by Wiley Post, who set a record for flying around the world solo in 1933. The aircraft also played a crucial role in Amelia Earhart's historic transatlantic solo flight in 1932, making her the first woman to achieve this feat. These record-breaking flights showcased the Vega's reliability, endurance, and advanced design for its time.\nBesides its record-breaking flights, the Vega was used in various roles, including mail delivery, exploration, and air racing. It was renowned for its ruggedness and ability to operate in harsh conditions, which made it a favorite among pilots who required a dependable and versatile aircraft. The Vega's design and performance left a lasting legacy in aviation history, influencing subsequent aircraft designs and cementing its place as a pioneering model in the evolution of aviation.\n", attributes: attributes)
         textView.attributedText = attributedText
         textView.backgroundColor = .clear
         textView.isEditable = false
@@ -127,12 +127,12 @@ class InfoHomeView: UIView {
         bodyFieldInfo.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(gradientBorderView.snp.bottom).offset(24)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-48)
         }
         
         quizBtn.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-20)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }
     }
     

@@ -15,6 +15,16 @@ class QuizOptionCell: UICollectionViewCell {
         return view
     }()
     
+    private(set) var nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = .customFont(font: .sup, style: .ercharge, size: 12)
+        label.textColor = .white
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = true
+        return label
+    }()
+    
     private(set) var optionLabel: UILabel = {
         let label = UILabel()
         label.font = .customFont(font: .author, style: .medium, size: 18)
@@ -40,6 +50,7 @@ class QuizOptionCell: UICollectionViewCell {
     
     private func setupUI() {
         contentView.addSubview(quizView)
+        contentView.addSubview(nameLabel)
         contentView.addSubview(optionLabel)
         contentView.layer.borderWidth = 1
         contentView.layer.cornerRadius = 6
@@ -50,11 +61,17 @@ class QuizOptionCell: UICollectionViewCell {
             make.edges.equalToSuperview()
         }
         
-        optionLabel.snp.makeConstraints { make in
+        nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.right.bottom.equalToSuperview().inset(12)
+            make.left.equalToSuperview().inset(4)
+        }
+        
+        optionLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(nameLabel).offset(-2)
+            make.left.equalTo(nameLabel.snp.right).offset(8)
         }
     }
+    
     
     func configure(with variant: AirplaneModel.Airplane.Quiz.Question.Variant, at index: Int) {
         optionLabel.text = variant.text
@@ -62,6 +79,19 @@ class QuizOptionCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         removeBackgroundGradient()
         removeGradientBorder()
+
+        switch index {
+        case 0:
+            nameLabel.text = "A."
+        case 1:
+            nameLabel.text = "B."
+        case 2:
+            nameLabel.text = "C."
+        case 3:
+            nameLabel.text = "D."
+        default:
+            break
+        }
     }
     
     func setSelected(_ selected: Bool) {
@@ -75,7 +105,6 @@ class QuizOptionCell: UICollectionViewCell {
     func setCorrect(_ correct: Bool) {
         if correct {
             applyBackgroundGradient()
-            optionLabel.textColor = .white
         } else {
             removeBackgroundGradient()
             contentView.layer.borderColor = UIColor.red.cgColor
