@@ -55,6 +55,7 @@ class LeadersView: UIView {
     private(set) lazy var topLeadView: TopLeadersView = {
         let view = TopLeadersView()
         view.backgroundColor = .clear
+        view.isHidden = true
         return view
     }()
     
@@ -106,15 +107,14 @@ class LeadersView: UIView {
             make.top.equalToSuperview().offset(74.autoSize)
         }
         
-        pointLabel.snp.makeConstraints { make in
+        imgPlane.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-12)
-            make.width.equalTo(80.autoSize)
+            make.left.equalToSuperview().offset(12)
         }
         
-        imgPlane.snp.makeConstraints { make in
-            make.centerY.equalTo(pointLabel)
-            make.right.equalTo(pointLabel.snp.left).offset(-12)
+        pointLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(imgPlane)
+            make.left.equalTo(imgPlane.snp.right).offset(12)
         }
         
         imgTitle.snp.makeConstraints { make in

@@ -90,31 +90,32 @@ class HomeView: UIView {
             make.top.equalToSuperview().offset(74.autoSize)
         }
         
-        pointLabel.snp.makeConstraints { make in
+        imgPlane.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-12)
-            make.width.equalTo(80.autoSize)
+            make.left.equalToSuperview().offset(12)
         }
         
-        imgPlane.snp.makeConstraints { make in
-            make.centerY.equalTo(pointLabel)
-            make.right.equalTo(pointLabel.snp.left).offset(-12)
+        pointLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(imgPlane)
+            make.left.equalTo(imgPlane.snp.right).offset(12)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
-            make.top.equalTo(imgContPoints.snp.bottom).offset(40)
+            make.top.equalTo(imgContPoints.snp.bottom).offset(40.autoSize)
         }
         
         collectionView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.height.equalTo(385)
-            make.top.equalTo(titleLabel.snp.bottom).offset(24)
+            make.height.equalTo(385.autoSize)
+            make.top.equalTo(titleLabel.snp.bottom).offset(24.autoSize)
         }
         
         btnRead.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(collectionView.snp.bottom)
+            make.height.equalTo(128.autoSize)
+            make.width.equalTo(331.autoSize)
         }
     }
 
@@ -122,8 +123,18 @@ class HomeView: UIView {
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.75), heightDimension: .fractionalHeight(1.0))
+        
+        let screenHeight = UIScreen.main.bounds.height
+        
+        // Условие для установки размера группы
+        let groupWidthDimension: NSCollectionLayoutDimension
+        if screenHeight <= 812 {
+            groupWidthDimension = .fractionalWidth(0.70)
+        } else {
+            groupWidthDimension = .fractionalWidth(0.75)
+        }
+        
+        let groupSize = NSCollectionLayoutSize(widthDimension: groupWidthDimension, heightDimension: .fractionalHeight(1.0))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
         let section = NSCollectionLayoutSection(group: group)
@@ -141,6 +152,7 @@ class HomeView: UIView {
 
         return UICollectionViewCompositionalLayout(section: section)
     }
+
 
 }
 

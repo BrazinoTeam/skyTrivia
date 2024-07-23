@@ -97,21 +97,21 @@ class TopLeadersView: UIView {
         addSubview(thirdContainer)
         
         firstContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(4)
             make.centerX.equalToSuperview()
             make.width.equalTo(100)
             make.height.equalTo(217)
         }
         
         secondContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(4)
             make.right.equalTo(firstContainer.snp.left).offset(-20)
             make.width.equalTo(100.autoSize)
             make.height.equalTo(188.autoSize)
         }
         
         thirdContainer.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(4)
             make.left.equalTo(firstContainer.snp.right).offset(20)
             make.width.equalTo(100.autoSize)
             make.height.equalTo(188.autoSize)
@@ -171,6 +171,5 @@ class TopLeadersView: UIView {
            secondLabel1.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
            secondLabel2.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
            secondLabel3.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
-
     }
 }

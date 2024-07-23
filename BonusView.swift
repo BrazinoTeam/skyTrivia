@@ -188,33 +188,32 @@ class BonusView: UIView {
             make.top.equalToSuperview().offset(74.autoSize)
         }
         
-        pointLabel.snp.makeConstraints { make in
+        imgPlane.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-12)
-            make.width.equalTo(80.autoSize)
+            make.left.equalToSuperview().offset(12)
         }
         
-        imgPlane.snp.makeConstraints { make in
-            make.centerY.equalTo(pointLabel)
-            make.right.equalTo(pointLabel.snp.left).offset(-12)
+        pointLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(imgPlane)
+            make.left.equalTo(imgPlane.snp.right).offset(12)
         }
         
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(60)
-            make.top.equalTo(imgContPoints.snp.bottom).offset(24)
+            make.top.equalTo(imgContPoints.snp.bottom).offset(24.autoSize)
         }
         
         subTitleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(36)
-            make.top.equalTo(titleLabel.snp.bottom).offset(24)
+            make.top.equalTo(titleLabel.snp.bottom).offset(24.autoSize)
         }
         
-        let buttonWidth = 168
-        let buttonHeight = 168
-        let spacing = 16
+        let buttonWidth = 168.autoSize
+        let buttonHeight = 168.autoSize
+        let spacing = 16.autoSize
            
         let totalWidth = (buttonWidth * 2) + spacing
-        let horizontalOffset = (Int(UIScreen.main.bounds.width) - totalWidth) / 2
+        let horizontalOffset = (Int(UIScreen.main.bounds.width) - Int(totalWidth)) / 2
            
            for (index, button) in buttons.enumerated() {
                let row = index / 2
@@ -222,8 +221,8 @@ class BonusView: UIView {
                button.snp.makeConstraints { make in
                    make.width.equalTo(buttonWidth)
                    make.height.equalTo(buttonHeight)
-                   make.top.equalTo(subTitleLabel.snp.bottom).offset(24 + (row * (buttonHeight + spacing)))
-                   make.left.equalToSuperview().offset(horizontalOffset + (column * (buttonWidth + spacing)))
+                   make.top.equalTo(subTitleLabel.snp.bottom).offset(24 + (row * Int((buttonHeight + spacing))))
+                   make.left.equalToSuperview().offset(horizontalOffset + (column * Int((buttonWidth + spacing))))
                }
            }
         
@@ -240,15 +239,14 @@ class BonusView: UIView {
             make.top.equalToSuperview().offset(74.autoSize)
         }
         
-        timerPointLabel.snp.makeConstraints { make in
+        timerImgPlane.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalToSuperview().offset(-12)
-            make.width.equalTo(80.autoSize)
+            make.left.equalToSuperview().offset(12)
         }
         
-        timerImgPlane.snp.makeConstraints { make in
-            make.centerY.equalTo(pointLabel)
-            make.right.equalTo(timerPointLabel.snp.left).offset(-12)
+        timerPointLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(imgPlane)
+            make.left.equalTo(imgPlane.snp.right).offset(12)
         }
         
         timerTitleLabel.snp.makeConstraints { make in

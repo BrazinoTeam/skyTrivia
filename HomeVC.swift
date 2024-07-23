@@ -1,7 +1,3 @@
-//
-//  HomeVC.swift
-//
-
 import Foundation
 import UIKit
 
@@ -10,6 +6,7 @@ class HomeVC: UIViewController {
     var selectedIndexPath: IndexPath?
     private let titleLabelCell: [String] = ["Lockheed Vega", "Beechcraft Model 18", "Piper PA-23 Apache", "Cessna 310", "Beechcraft Baron", "Cessna 402", "Beechcraft King Air"]
     private let imageCell: [UIImage] = [.imgLockheedVega, .imgBeechcraftModel18, .imgPiperPA, .imgCessna310, .imgBeechcraftBaron, .imgCessna402, .imgBeechcraftKingAir]
+    private let numberOfItemsMultiplier = 100
 
     private var contentView: HomeView {
         view as? HomeView ?? HomeView()
@@ -23,6 +20,7 @@ class HomeVC: UIViewController {
         super.viewDidLoad()
         configureCollection()
         tappedButtons()
+        scrollToMiddle()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,35 +48,38 @@ class HomeVC: UIViewController {
             print("No visible cell index found")
             return
         }
-        print("READ at index \(selectedIndexPath.item)")
         let vc = InfoHomeVC()
-        vc.selectCount = selectedIndexPath.item
+        vc.selectCount = selectedIndexPath.item % titleLabelCell.count
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    private func scrollToMiddle() {
+        let middleIndexPath = IndexPath(item: (titleLabelCell.count * numberOfItemsMultiplier) / 2, section: 0)
+        contentView.collectionView.scrollToItem(at: middleIndexPath, at: .centeredHorizontally, animated: false)
     }
 }
 
 extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return titleLabelCell.count
+        return titleLabelCell.count * numberOfItemsMultiplier
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeCell.reuseId, for: indexPath) as? HomeCell else {
             return UICollectionViewCell()
         }
-        cell.titleLabel.text = titleLabelCell[indexPath.item]
-        cell.imageAirplanes.image = imageCell[indexPath.item]
+        let index = indexPath.item % titleLabelCell.count
+        cell.titleLabel.text = titleLabelCell[index]
+        cell.imageAirplanes.image = imageCell[index]
     
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // Если ячейка центрируется, устанавливаем ее как выбранную
         updateSelectedIndexPath(collectionView)
     }
     
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        // Если ячейка центрируется, устанавливаем ее как выбранную
         updateSelectedIndexPath(collectionView)
     }
     
@@ -86,6 +87,27 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate {
         let centerPoint = CGPoint(x: collectionView.bounds.midX + collectionView.contentOffset.x, y: collectionView.bounds.midY + collectionView.contentOffset.y)
         if let visibleIndexPath = collectionView.indexPathForItem(at: centerPoint) {
             selectedIndexPath = visibleIndexPath
+        }
+    }
+}
+
+extension HomeVC: UIScrollViewDelegate {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if let collectionView = scrollView as? UICollectionView {
+            updateSelectedIndexPath(collectionView)
+            
+            let itemsCount = titleLabelCell.count * numberOfItemsMultiplier
+            let middleIndexPath = IndexPath(item: itemsCount / 2, section: 0)
+            
+            let currentOffset = collectionView.contentOffset.x
+            let contentWidth = collectionView.contentSize.width
+            let width = collectionView.frame.width
+            
+            if currentOffset <= 0 {
+                collectionView.scrollToItem(at: middleIndexPath, at: .centeredHorizontally, animated: false)
+            } else if currentOffset + width >= contentWidth {
+                collectionView.scrollToItem(at: middleIndexPath, at: .centeredHorizontally, animated: false)
+            }
         }
     }
 }

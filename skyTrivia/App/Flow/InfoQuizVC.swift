@@ -9,6 +9,13 @@ class InfoQuizVC: UIViewController {
     
     private var fullScreenWinView: UIView?
     private var fullScreenLoseView: UIView?
+    
+    private var titleWinLabel = UILabel()
+    private var subTitleWinLabel = UILabel()
+
+    
+    private var titleLoseLabel = UILabel()
+    private var subTitleLoseLabel = UILabel()
 
     private var contentView: InfoQuizView {
         view as? InfoQuizView ?? InfoQuizView()
@@ -89,7 +96,7 @@ class InfoQuizVC: UIViewController {
     }
     
     @objc func goButtonTappedBack() {
-        navigationController?.popViewController(animated: true)
+        navigationController?.popToRootViewController(animated: true)
     }
     
     @objc func answerBtnTapped() {
@@ -125,10 +132,15 @@ class InfoQuizVC: UIViewController {
                     MemoryApp.shared.scorePoints += 100
                     MemoryApp.shared.passedTheQuiz += 1
                     self.updateScore()
-                    self.presentModalView(title: "Congratulations!", subtitle: .imgSubTitleWin)
+                    self.presentModalView()
+                    self.titleWinLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+                    self.subTitleWinLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+
                 } else {
                     MemoryApp.shared.failedQuiz += 1
-                    self.presentModalViewLose(title: "Unfortunately,", subtitle: .imgSubTitleLose)
+                    self.presentModalViewLose()
+                    self.titleLoseLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+                    self.subTitleLoseLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
                 }
             } else {
                 self.currentQuestionIndex += 1
@@ -268,12 +280,12 @@ extension InfoQuizVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 20) // Adjusting width for spacing
-        return CGSize(width: width, height: 40)
+        return CGSize(width: width, height: 40.autoSize)
     }
 }
 extension InfoQuizVC {
     
-    func presentModalView(title: String, subtitle: UIImage) {
+    func presentModalView() {
         if fullScreenWinView == nil {
             fullScreenWinView = UIView(frame: self.view.bounds)
             fullScreenWinView!.backgroundColor = .black.withAlphaComponent(0.8)
@@ -292,17 +304,17 @@ extension InfoQuizVC {
             bgImage.clipsToBounds = true
             viewContainer.addSubview(bgImage)
             
-            let titleLabel = GradientLabel()
-            titleLabel.text = title
-            titleLabel.font = .customFont(font: .sup, style: .ercharge, size: 20)
-            titleLabel.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
-            titleLabel.numberOfLines = 0
-            titleLabel.textAlignment = .center
-            viewContainer.addSubview(titleLabel)
+            titleWinLabel = UILabel.createLabel(withText: "Congratilations!", font: .customFont(font: .sup, style: .ercharge, size: 20), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1, kern: 3)
+            titleWinLabel.numberOfLines = 0
+            titleWinLabel.textAlignment = .center
+            titleWinLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           viewContainer.addSubview(titleWinLabel)
             
-            let subTitleView = UIImageView(image: subtitle)
-            subTitleView.contentMode = .scaleAspectFit
-            viewContainer.addSubview(subTitleView)
+            subTitleWinLabel = UILabel.createLabel(withText: "You've done an excellent job and\nearned 100 points in the airplane quiz. \nKeep up the great work!", font: .customFont(font: .author, style: .medium, size: 18), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1.13, kern: 0.36)
+            subTitleWinLabel.numberOfLines = 0
+            subTitleWinLabel.textAlignment = .center
+            subTitleWinLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           viewContainer.addSubview(subTitleWinLabel)
             
             let imgCointWin = UIImageView(image: .imgPointsWin)
             imgCointWin.contentMode = .scaleAspectFit
@@ -326,27 +338,27 @@ extension InfoQuizVC {
             viewContainer.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.centerY.equalToSuperview()
-                make.height.equalTo(567.autoSize)
-                make.width.equalTo(329.autoSize)
+                make.height.equalTo(567)
+                make.width.equalTo(329)
             }
 
             bgImage.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
 
-            titleLabel.snp.makeConstraints { make in
+            titleWinLabel.snp.makeConstraints { make in
                 make.left.right.equalToSuperview().inset(32)
                 make.top.equalToSuperview().offset(32.autoSize)
             }
             
-            subTitleView.snp.makeConstraints { make in
-                make.centerX.equalTo(viewContainer)
-                make.top.equalTo(titleLabel.snp.bottom).offset(8.autoSize)
+            subTitleWinLabel.snp.makeConstraints { make in
+                make.left.right.equalTo(viewContainer).inset(20)
+                make.top.equalTo(titleWinLabel.snp.bottom).offset(8.autoSize)
             }
             
             imgCointWin.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.top.equalTo(subTitleView.snp.bottom).offset(20.autoSize)
+                make.top.equalTo(subTitleWinLabel.snp.bottom).offset(20.autoSize)
             }
             
             imageBonusView.snp.makeConstraints { make in
@@ -379,7 +391,7 @@ extension InfoQuizVC {
         }
     }
     
-    func presentModalViewLose(title: String, subtitle: UIImage) {
+    func presentModalViewLose() {
         if fullScreenLoseView == nil {
             fullScreenLoseView = UIView(frame: self.view.bounds)
             fullScreenLoseView!.backgroundColor = .black.withAlphaComponent(0.8)
@@ -398,17 +410,17 @@ extension InfoQuizVC {
             bgImage.clipsToBounds = true
             viewContainer.addSubview(bgImage)
             
-            let titleLabel = GradientLabel()
-            titleLabel.text = title
-            titleLabel.font = .customFont(font: .sup, style: .ercharge, size: 20)
-            titleLabel.gradientColors = [.cBiegeGradOne, .cBiegeGradTwo]
-            titleLabel.numberOfLines = 0
-            titleLabel.textAlignment = .center
-            viewContainer.addSubview(titleLabel)
+             titleLoseLabel = UILabel.createLabel(withText: "Unfortunately,", font: .customFont(font: .sup, style: .ercharge, size: 20), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1, kern: 3)
+            titleLoseLabel.numberOfLines = 0
+            titleLoseLabel.textAlignment = .center
+            titleLoseLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+            viewContainer.addSubview(titleLoseLabel)
             
-            let subTitleView = UIImageView(image: subtitle)
-            subTitleView.contentMode = .scaleAspectFit
-            viewContainer.addSubview(subTitleView)
+            subTitleLoseLabel = UILabel.createLabel(withText: "you didn't score enough points this\ntime. Review the information about\nthe airplanes and try again. \nKeep practicing, and you'll improve!", font: .customFont(font: .author, style: .medium, size: 18), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1.13, kern: 0.36)
+            subTitleLoseLabel.numberOfLines = 0
+            subTitleLoseLabel.textAlignment = .center
+            subTitleLoseLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
+           viewContainer.addSubview(subTitleLoseLabel)
       
             let imageBonusView = UIImageView(image: .imgCasesLose)
             imageBonusView.contentMode = .scaleAspectFit
@@ -427,27 +439,27 @@ extension InfoQuizVC {
             viewContainer.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
                 make.centerY.equalToSuperview()
-                make.height.equalTo(510.autoSize)
-                make.width.equalTo(329.autoSize)
+                make.height.equalTo(510)
+                make.width.equalTo(329)
             }
 
             bgImage.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
 
-            titleLabel.snp.makeConstraints { make in
+            titleLoseLabel.snp.makeConstraints { make in
                 make.left.right.equalToSuperview().inset(32)
                 make.top.equalToSuperview().offset(32.autoSize)
             }
             
-            subTitleView.snp.makeConstraints { make in
-                make.centerX.equalTo(viewContainer)
-                make.top.equalTo(titleLabel.snp.bottom).offset(8.autoSize)
+            subTitleLoseLabel.snp.makeConstraints { make in
+                make.left.right.equalTo(viewContainer).inset(20)
+                make.top.equalTo(titleLoseLabel.snp.bottom).offset(8.autoSize)
             }
             
             imageBonusView.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.top.equalTo(subTitleView.snp.bottom).offset(20)
+                make.top.equalTo(subTitleLoseLabel.snp.bottom).offset(20)
             }
             
             backButton.snp.makeConstraints { make in

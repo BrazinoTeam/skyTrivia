@@ -48,6 +48,7 @@ class LeadersVC: UIViewController {
             self.users = users
             self.sortPointsUsers()
             self.updateContentView()
+            self.contentView.topLeadView.isHidden = false
         } errorCompletion: { error in
             print("Error loading users: \(error)")
         }

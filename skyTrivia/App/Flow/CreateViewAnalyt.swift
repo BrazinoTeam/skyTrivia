@@ -69,7 +69,8 @@ class CreateViewAnalyt: UIView {
         
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(2)
-            make.left.equalTo(imgIcon.snp.right).offset(12)
+            make.left.equalTo(imgIcon.snp.right).offset(12.autoSize)
+            make.right.equalToSuperview().offset(-12.autoSize)
         }
     }
 }

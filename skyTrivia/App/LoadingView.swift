@@ -7,7 +7,7 @@ class LoadingView: UIView {
     private(set) var bgImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .bgLogo
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleToFill
         return imageView
     }()
    

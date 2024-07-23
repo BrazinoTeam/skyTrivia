@@ -40,7 +40,7 @@ class InfoHomeVC: UIViewController {
     @objc private func quizViewTapped() {
        
         let quizVC = InfoQuizVC(selectedAirplaneIndex: selectCount)
-        navigationController?.pushViewController(quizVC, animated: true)
+        navigationController?.pushViewController(quizVC, animated: false)
     }
     
     private let imageCell: [UIImage] = [.imgLockheedVega, .imgBeechcraftModel18, .imgPiperPA, .imgCessna310, .imgBeechcraftBaron, .imgCessna402, .imgBeechcraftKingAir]
@@ -83,5 +83,7 @@ class InfoHomeVC: UIViewController {
             break
 
         }
+        contentView.updateGradient()
+
     }
 }

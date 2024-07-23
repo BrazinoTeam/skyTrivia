@@ -147,7 +147,7 @@ class ProfileView: UIView {
         }
         
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(btnName.snp.bottom)
+            make.top.equalTo(btnName.snp.bottom).offset(-12)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-52)
         }

@@ -33,7 +33,7 @@ final class NavigationTabBar: UITabBarController {
         stackView.distribution = .equalSpacing
         stackView.alignment = .center
         stackView.backgroundColor = .green
-        stackView.frame = CGRect(x: 0, y: view.frame.height - 90, width: view.frame.width, height: 90)
+        stackView.frame = CGRect(x: 0, y: view.frame.height - 90.autoSize, width: view.frame.width, height: 90.autoSize)
         stackView.addArrangedSubview(btn1)
         stackView.addArrangedSubview(btn2)
         stackView.addArrangedSubview(btn3)

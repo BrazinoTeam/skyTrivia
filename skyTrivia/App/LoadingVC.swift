@@ -19,10 +19,11 @@ class LoadingVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         createLoadingBar()
-        animateLoadingBar()
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.loadTabBar()
         }
+        animateLoadingBar()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,7 +66,7 @@ class LoadingVC: UIViewController {
     }
     
     private func animateLoadingBar() {
-        let totalDuration: TimeInterval = 3
+        let totalDuration: TimeInterval = 2.5
         let durationPerSegment = totalDuration / Double(segments.count)
         
         for (index, segment) in segments.enumerated() {

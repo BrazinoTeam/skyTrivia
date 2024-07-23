@@ -42,6 +42,8 @@ class ProfileVC: UIViewController, UITextFieldDelegate {
         contentView.analyticViewThree.titleLabel.text = "\(MemoryApp.shared.scorePoints)"
         contentView.analyticViewOne.titleLabel.text = "\(MemoryApp.shared.passedTheQuiz)"
         contentView.analyticViewTwo.titleLabel.text = "\(MemoryApp.shared.failedQuiz)"
+        contentView.nameLabel.text = "\(MemoryApp.shared.userName ?? "User Name")"
+
     }
     
     private func buttonsActive() {

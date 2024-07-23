@@ -59,7 +59,6 @@ class GetRequestService {
                 let decoder = JSONDecoder()
                 let players = try decoder.decode([User].self, from: data)
                 DispatchQueue.main.async {
-                    print("JSon \(players)")
                     successCompletion(players)
                 }
             }catch {

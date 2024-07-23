@@ -115,14 +115,14 @@ class InfoQuizView: UIView {
         }
         
         imgPlanes.snp.makeConstraints { make in
-            make.top.equalTo(backBtn.snp.top).offset(-98)
-            make.left.right.equalToSuperview().inset(-62)
-            make.height.equalTo(515)
-            make.width.equalTo(519)
+            make.top.equalTo(backBtn.snp.top).offset(-98.autoSize)
+            make.left.right.equalToSuperview().inset(-62.autoSize)
+            make.height.equalTo(515.autoSize)
+            make.width.equalTo(519.autoSize)
         }
         
         imgContainerQuiz.snp.makeConstraints { make in
-            make.top.equalTo(backBtn.snp.bottom).offset(220)
+            make.top.equalTo(backBtn.snp.bottom).offset(220.autoSize)
         }
         
         imgAirPlanes.snp.makeConstraints { make in
@@ -158,6 +158,8 @@ class InfoQuizView: UIView {
         quizBtn.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-24.autoSize)
             make.centerX.equalToSuperview()
+            make.width.equalTo(376.autoSize)
+            make.height.equalTo(86.autoSize)
         }
     }
     

@@ -62,13 +62,14 @@ class QuizOptionCell: UICollectionViewCell {
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(4)
             make.left.equalToSuperview().inset(4)
         }
         
         optionLabel.snp.makeConstraints { make in
-            make.centerY.equalTo(nameLabel).offset(-2)
+            make.centerY.equalToSuperview()
             make.left.equalTo(nameLabel.snp.right).offset(8)
+            make.right.equalToSuperview().offset(4)
         }
     }
     

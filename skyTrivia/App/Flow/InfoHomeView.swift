@@ -1,6 +1,5 @@
 //
 //  InfoHomeView.swift
-
 import Foundation
 import UIKit
 import SnapKit
@@ -64,6 +63,8 @@ class InfoHomeView: UIView {
         textView.isEditable = false
         textView.showsVerticalScrollIndicator = false
         textView.textColor = .white
+        textView.isScrollEnabled = true
+        textView.delegate = self
         return textView
     }()
     
@@ -78,11 +79,14 @@ class InfoHomeView: UIView {
         return button
     }()
     
+    private var gradientLayer: CAGradientLayer?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
         setupConstraints()
         setupGradientBorder()
+        applyAlphaGradientToTextView()
     }
     
     required init?(coder: NSCoder) {
@@ -106,6 +110,8 @@ class InfoHomeView: UIView {
         backBtn.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(56.autoSize)
+            make.height.equalTo(56.autoSize)
+            make.width.equalTo(64.autoSize)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -151,5 +157,30 @@ class InfoHomeView: UIView {
         if let gradientLayer = gradientBorderView.layer.sublayers?.first as? CAGradientLayer {
             gradientLayer.frame = gradientBorderView.bounds
         }
+        gradientLayer?.frame = bodyFieldInfo.bounds
+    }
+    
+    private func applyAlphaGradientToTextView() {
+        gradientLayer = CAGradientLayer()
+        gradientLayer?.colors = [
+            UIColor(white: 1.0, alpha: 1.0).cgColor,
+            UIColor(white: 1.0, alpha: 0.6).cgColor,
+            UIColor(white: 1.0, alpha: 0.2).cgColor
+        ]
+        gradientLayer?.locations = [0.0, 0.5, 1.0]
+        gradientLayer?.startPoint = CGPoint(x: 0.5, y: 0.0)
+        gradientLayer?.endPoint = CGPoint(x: 0.5, y: 1.0)
+        gradientLayer?.frame = bodyFieldInfo.bounds
+        bodyFieldInfo.layer.mask = gradientLayer
+    }
+    
+    func updateGradient() {
+        gradientLayer?.frame = bodyFieldInfo.bounds
+    }
+}
+
+extension InfoHomeView: UITextViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateGradient()
     }
 }
