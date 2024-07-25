@@ -151,7 +151,7 @@ class InfoQuizView: UIView {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(imgChoose.snp.bottom).offset(20.autoSize)
-            make.left.right.equalToSuperview().inset(20.autoSize)
+            make.left.right.equalToSuperview()
             make.height.equalTo(216)
         }
         

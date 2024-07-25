@@ -39,7 +39,7 @@ class InfoHomeView: UIView {
     private (set) var centerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .imgLockheedVega
-        imageView.contentMode = .scaleToFill
+        imageView.contentMode = .scaleAspectFill
         imageView.layer.cornerRadius = 8
         imageView.clipsToBounds = true
         return imageView
@@ -57,15 +57,20 @@ class InfoHomeView: UIView {
             .paragraphStyle: textStyle
         ]
         
-        let attributedText = NSAttributedString(string: "      The Lockheed Vega is an iconic aircraft that played a significant role in the history of aviation. First designed by Lockheed in 1927, the Vega was intended as a high-performance, long-range aircraft. Its design featured a cantilever wing, which eliminated the need for struts, contributing to its sleek, aerodynamic shape. The aircraft was built with a wooden fuselage covered in plywood, which provided strength while keeping the weight down. The Vega could carry up to six passengers and was initially powered by a 450-horsepower Pratt & Whitney Wasp radial engine, giving it a maximum speed of approximately 135 miles per hour and a range of around 700 miles.\nThe Vega gained fame for its involvement in several notable flights and records. One of the most famous Vegans, the \"Winnie Mae,\" was flown by Wiley Post, who set a record for flying around the world solo in 1933. The aircraft also played a crucial role in Amelia Earhart's historic transatlantic solo flight in 1932, making her the first woman to achieve this feat. These record-breaking flights showcased the Vega's reliability, endurance, and advanced design for its time.\nBesides its record-breaking flights, the Vega was used in various roles, including mail delivery, exploration, and air racing. It was renowned for its ruggedness and ability to operate in harsh conditions, which made it a favorite among pilots who required a dependable and versatile aircraft. The Vega's design and performance left a lasting legacy in aviation history, influencing subsequent aircraft designs and cementing its place as a pioneering model in the evolution of aviation.\n", attributes: attributes)
+        let attributedText = NSAttributedString(string: "      The", attributes: attributes)
         textView.attributedText = attributedText
         textView.backgroundColor = .clear
         textView.isEditable = false
         textView.showsVerticalScrollIndicator = false
         textView.textColor = .white
         textView.isScrollEnabled = true
-        textView.delegate = self
         return textView
+    }()
+    
+    private (set) var gradientTextView: UIView = {
+        let view = UIView()
+        view.isUserInteractionEnabled = false
+        return view
     }()
     
     let quizBtn: UIButton = {
@@ -86,7 +91,8 @@ class InfoHomeView: UIView {
         setupUI()
         setupConstraints()
         setupGradientBorder()
-        applyAlphaGradientToTextView()
+        setupGradientLayer()
+
     }
     
     required init?(coder: NSCoder) {
@@ -99,7 +105,7 @@ class InfoHomeView: UIView {
     }
     
     private func setupUI() {
-        [bgImage, backBtn, titleLabel, gradientBorderView, centerImage, bodyFieldInfo, quizBtn] .forEach(addSubview(_:))
+        [bgImage, backBtn, titleLabel, gradientBorderView, centerImage, bodyFieldInfo, gradientTextView, quizBtn] .forEach(addSubview(_:))
     }
     
     private func setupConstraints() {
@@ -133,7 +139,13 @@ class InfoHomeView: UIView {
         bodyFieldInfo.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(20)
             make.top.equalTo(gradientBorderView.snp.bottom).offset(24)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-64)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-72)
+        }
+        
+        gradientTextView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview().inset(16)
+            make.top.equalTo(gradientBorderView.snp.bottom).offset(24)
+            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
         }
         
         quizBtn.snp.makeConstraints { make in
@@ -160,27 +172,15 @@ class InfoHomeView: UIView {
         gradientLayer?.frame = bodyFieldInfo.bounds
     }
     
-    private func applyAlphaGradientToTextView() {
+    private func setupGradientLayer() {
         gradientLayer = CAGradientLayer()
         gradientLayer?.colors = [
-            UIColor(white: 1.0, alpha: 1.0).cgColor,
-            UIColor(white: 1.0, alpha: 0.6).cgColor,
-            UIColor(white: 1.0, alpha: 0.2).cgColor
+            UIColor.clear.cgColor,
+            UIColor.clear.withAlphaComponent(0.2).cgColor,
+            UIColor.clear.withAlphaComponent(0.3).cgColor
         ]
         gradientLayer?.locations = [0.0, 0.5, 1.0]
-        gradientLayer?.startPoint = CGPoint(x: 0.5, y: 0.0)
-        gradientLayer?.endPoint = CGPoint(x: 0.5, y: 1.0)
-        gradientLayer?.frame = bodyFieldInfo.bounds
-        bodyFieldInfo.layer.mask = gradientLayer
-    }
-    
-    func updateGradient() {
-        gradientLayer?.frame = bodyFieldInfo.bounds
-    }
-}
-
-extension InfoHomeView: UITextViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateGradient()
+        gradientLayer?.frame = gradientTextView.bounds
+        gradientTextView.layer.insertSublayer(gradientLayer!, at: 0)
     }
 }

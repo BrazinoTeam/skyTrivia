@@ -101,7 +101,7 @@ class LeaderCell: UITableViewCell {
         userImage.snp.makeConstraints { (make) in
             make.centerY.equalToSuperview()
             make.left.equalTo(numberLabel.snp.right).offset(12)
-            make.size.equalTo(40.autoSize)
+            make.size.equalTo(32.autoSize)
         }
         
         nameLabel.snp.makeConstraints { (make) in

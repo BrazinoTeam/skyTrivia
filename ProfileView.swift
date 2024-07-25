@@ -28,14 +28,20 @@ class ProfileView: UIView {
     private (set) var imgUserPhoto: UIImageView = {
         let imageView = UIImageView()
         imageView.image = .imgUser
-        imageView.contentMode = .scaleToFill
-        imageView.layer.shadowColor = UIColor(red: 1, green: 0.379, blue: 0.295, alpha: 0.8).cgColor
-        imageView.layer.shadowOpacity = 1
-        imageView.layer.shadowRadius = 35
-        imageView.layer.shadowOffset = CGSize(width: 0, height: 2)
         imageView.layer.cornerRadius = 60
         imageView.clipsToBounds = true
         return imageView
+    }()
+    
+    private (set) var shadowViewPhoto: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
+        view.layer.shadowColor = UIColor(red: 1, green: 0.379, blue: 0.295, alpha: 0.8).cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowRadius = 35
+        view.layer.shadowOffset = CGSize(width: 0, height: 2)
+        view.layer.cornerRadius = 60
+        return view
     }()
     
     private (set) var nameLabel: GradientLabel = {
@@ -108,7 +114,7 @@ class ProfileView: UIView {
     
     private func setupUI() {
 
-        [bgImage, titleLabel, imgUserPhoto, nameLabel , btnName, btnPhoto, scrollView] .forEach(addSubview(_:))
+        [bgImage, titleLabel, shadowViewPhoto, imgUserPhoto, nameLabel , btnName, btnPhoto, scrollView] .forEach(addSubview(_:))
         
         scrollView.addSubview(contentView)
         [analyticLabel, analyticViewOne, analyticViewTwo, analyticViewThree] .forEach(contentView.addSubview(_:))
@@ -131,6 +137,12 @@ class ProfileView: UIView {
             make.size.equalTo(120)
         }
         
+        shadowViewPhoto.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(28)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(120)
+        }
+        
         nameLabel.snp.makeConstraints { make in
             make.top.equalTo(imgUserPhoto.snp.bottom).offset(16)
             make.left.right.equalToSuperview().inset(60)
@@ -138,16 +150,16 @@ class ProfileView: UIView {
         
         btnName.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
-            make.centerX.equalToSuperview().offset(-92)
+            make.centerX.equalToSuperview().offset(-84)
         }
         
         btnPhoto.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom)
-            make.centerX.equalToSuperview().offset(92)
+            make.centerX.equalToSuperview().offset(84)
         }
         
         scrollView.snp.makeConstraints { make in
-            make.top.equalTo(btnName.snp.bottom).offset(-12)
+            make.top.equalTo(btnName.snp.bottom).offset(-24)
             make.left.right.equalToSuperview()
             make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-52)
         }
@@ -175,7 +187,7 @@ class ProfileView: UIView {
         analyticViewThree.snp.makeConstraints { make in
             make.top.equalTo(analyticViewTwo.snp.bottom).offset(8)
             make.left.right.equalToSuperview().inset(20)
-            make.bottom.equalToSuperview().offset(-20) // Ensure contentView's bottom is constrained
+            make.bottom.equalToSuperview().offset(-20)
         }
     }
 }

@@ -63,7 +63,7 @@ class QuizOptionCell: UICollectionViewCell {
         
         nameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(4)
-            make.left.equalToSuperview().inset(4)
+            make.left.equalToSuperview().offset(24)
         }
         
         optionLabel.snp.makeConstraints { make in
@@ -77,6 +77,7 @@ class QuizOptionCell: UICollectionViewCell {
     func configure(with variant: AirplaneModel.Airplane.Quiz.Question.Variant, at index: Int) {
         optionLabel.text = variant.text
         optionLabel.textColor = .white
+        nameLabel.textColor = .white
         contentView.backgroundColor = .clear
         removeBackgroundGradient()
         removeGradientBorder()
@@ -110,6 +111,9 @@ class QuizOptionCell: UICollectionViewCell {
             removeBackgroundGradient()
             contentView.layer.borderColor = UIColor.red.cgColor
             contentView.layer.borderWidth = 2
+            optionLabel.textColor = .red
+            nameLabel.textColor = .red
+
         }
     }
     
@@ -133,6 +137,8 @@ class QuizOptionCell: UICollectionViewCell {
         contentView.layer.addSublayer(gradientLayer)
         self.gradientLayer = gradientLayer
         optionLabel.textColor = .cBiegeGradOne
+        nameLabel.textColor = .cBiegeGradOne
+
     }
     
     private func removeGradientBorder() {

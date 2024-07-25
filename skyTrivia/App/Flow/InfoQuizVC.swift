@@ -280,7 +280,7 @@ extension InfoQuizVC: UICollectionViewDelegate, UICollectionViewDataSource, UICo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (collectionView.frame.width - 20) // Adjusting width for spacing
-        return CGSize(width: width, height: 40.autoSize)
+        return CGSize(width: width, height: 44.autoSize)
     }
 }
 extension InfoQuizVC {
@@ -304,13 +304,13 @@ extension InfoQuizVC {
             bgImage.clipsToBounds = true
             viewContainer.addSubview(bgImage)
             
-            titleWinLabel = UILabel.createLabel(withText: "Congratilations!", font: .customFont(font: .sup, style: .ercharge, size: 20), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1, kern: 3)
+            titleWinLabel = UILabel.createLabel(withText: "congratUlations!", font: .customFont(font: .sup, style: .ercharge, size: 20), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1, kern: 3)
             titleWinLabel.numberOfLines = 0
             titleWinLabel.textAlignment = .center
             titleWinLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
            viewContainer.addSubview(titleWinLabel)
             
-            subTitleWinLabel = UILabel.createLabel(withText: "You've done an excellent job and\nearned 100 points in the airplane quiz. \nKeep up the great work!", font: .customFont(font: .author, style: .medium, size: 18), textColor: .white, paragraphSpacing: 1, lineHeightMultiple: 1.13, kern: 0.36)
+            subTitleWinLabel = UILabel.createLabel(withText: "You've done an excellent job and earned 100 points in the airplane quiz. \n\nKeep up the great work!", font: .customFont(font: .author, style: .medium, size: 18), textColor: .white, paragraphSpacing: 1.25, lineHeightMultiple: 1.13, kern: 0.36)
             subTitleWinLabel.numberOfLines = 0
             subTitleWinLabel.textAlignment = .center
             subTitleWinLabel.setGradientText(colors: [UIColor.cBiegeGradOne, UIColor.cBiegeGradTwo])
@@ -347,7 +347,7 @@ extension InfoQuizVC {
             }
 
             titleWinLabel.snp.makeConstraints { make in
-                make.left.right.equalToSuperview().inset(32)
+                make.centerX.equalToSuperview()
                 make.top.equalToSuperview().offset(32.autoSize)
             }
             
@@ -368,7 +368,7 @@ extension InfoQuizVC {
             
             backButton.snp.makeConstraints { make in
                 make.centerX.equalToSuperview()
-                make.top.equalTo(imageBonusView.snp.bottom)
+                make.top.equalTo(imageBonusView.snp.bottom).offset(-18)
                 make.height.equalTo(86)
                 make.width.equalTo(290)
             }

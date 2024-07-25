@@ -83,7 +83,7 @@ class InfoHomeVC: UIViewController {
             break
 
         }
-        contentView.updateGradient()
+//        contentView.updateGradient()
 
     }
 }
