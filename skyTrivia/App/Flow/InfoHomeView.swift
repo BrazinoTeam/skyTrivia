@@ -63,7 +63,7 @@ class InfoHomeView: UIView {
         textView.isEditable = false
         textView.showsVerticalScrollIndicator = false
         textView.textColor = .white
-        textView.textContainerInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: 20, bottom: 72, right: 20)
         textView.isScrollEnabled = true
         return textView
     }()
@@ -140,13 +140,13 @@ class InfoHomeView: UIView {
         bodyFieldInfo.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(gradientBorderView.snp.bottom).offset(24)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-72)
+            make.bottom.equalToSuperview()
         }
         
         gradientTextView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(gradientBorderView.snp.bottom).offset(24)
-            make.bottom.equalTo(safeAreaLayoutGuide.snp.bottom)
+            make.bottom.equalToSuperview()
         }
         
         quizBtn.snp.makeConstraints { make in
@@ -178,9 +178,10 @@ class InfoHomeView: UIView {
         gradientLayer?.colors = [
             UIColor.clear.cgColor,
             UIColor.clear.withAlphaComponent(0.2).cgColor,
-            UIColor.clear.withAlphaComponent(0.5).cgColor
+            UIColor.clear.withAlphaComponent(0.5).cgColor,
+            UIColor.black.cgColor,
         ]
-        gradientLayer?.locations = [0.0, 0.5, 1.0]
+        gradientLayer?.locations = [0.0, 0.3, 0.6, 1.0]
         gradientLayer?.frame = gradientTextView.bounds
         gradientTextView.layer.insertSublayer(gradientLayer!, at: 0)
     }

@@ -36,6 +36,17 @@ class ProfileView: UIView {
     private (set) var shadowViewPhoto: UIView = {
         let view = UIView()
         view.backgroundColor = .black
+        view.layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        view.layer.shadowOpacity = 1
+        view.layer.shadowRadius = 2
+        view.layer.shadowOffset = CGSize(width: 2, height: 5)
+        view.layer.cornerRadius = 60
+        return view
+    }()
+    
+    private (set) var shadowOrangeViewPhoto: UIView = {
+        let view = UIView()
+        view.backgroundColor = .black
         view.layer.shadowColor = UIColor(red: 1, green: 0.379, blue: 0.295, alpha: 0.8).cgColor
         view.layer.shadowOpacity = 1
         view.layer.shadowRadius = 35
@@ -114,7 +125,7 @@ class ProfileView: UIView {
     
     private func setupUI() {
 
-        [bgImage, titleLabel, shadowViewPhoto, imgUserPhoto, nameLabel , btnName, btnPhoto, scrollView] .forEach(addSubview(_:))
+        [bgImage, titleLabel, shadowOrangeViewPhoto, shadowViewPhoto, imgUserPhoto, nameLabel , btnName, btnPhoto, scrollView] .forEach(addSubview(_:))
         
         scrollView.addSubview(contentView)
         [analyticLabel, analyticViewOne, analyticViewTwo, analyticViewThree] .forEach(contentView.addSubview(_:))
@@ -131,13 +142,19 @@ class ProfileView: UIView {
             make.left.right.equalToSuperview().inset(60)
         }
         
-        imgUserPhoto.snp.makeConstraints { make in
+        shadowOrangeViewPhoto.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(28)
             make.centerX.equalToSuperview()
             make.size.equalTo(120)
         }
         
         shadowViewPhoto.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel.snp.bottom).offset(28)
+            make.centerX.equalToSuperview()
+            make.size.equalTo(120)
+        }
+        
+        imgUserPhoto.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(28)
             make.centerX.equalToSuperview()
             make.size.equalTo(120)
